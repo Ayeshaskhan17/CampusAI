@@ -1,0 +1,6924 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CampusAI — Your Campus. One Intelligent Place.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f8fafc;
+  --surface:#fff;
+  --primary:#4f46e5;
+  --primary-dark:#4338ca;
+  --ai:#06b6d4;
+  --text:#0f172a;
+  --muted:#64748b;
+  --border:#e2e8f0;
+  --success:#10b981;
+  --warning:#f59e0b;
+  --danger:#ef4444;
+  --soft:#f1f5f9;
+  --soft2:#eef2ff;
+  --radius:16px;
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px rgba(15,23,42,.04);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,sans-serif
+}
+
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+h1,h2,h3,h4{
+  font-family:"Plus Jakarta Sans",sans-serif;
+  margin:0
+}
+
+a{
+  text-decoration:none;
+  color:inherit
+}
+
+.app{
+  min-height:100vh;
+  display:flex
+}
+
+.sidebar{
+  width:248px;
+  background:#fff;
+  border-right:1px solid var(--border);
+  position:fixed;
+  inset:0 auto 0 0;
+  padding:22px 16px;
+  z-index:20
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:6px 10px 24px
+}
+
+.brand-mark{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--primary),var(--ai));
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-weight:800
+}
+
+.brand-name{
+  font-family:"Plus Jakarta Sans";
+  font-weight:700;
+  font-size:18px
+}
+
+.brand-sub{
+  font-size:11px;
+  color:var(--muted)
+}
+
+.nav-section{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:#94a3b8;
+  padding:14px 10px 7px
+}
+
+.nav{
+  display:grid;
+  gap:4px
+}
+
+.nav button{
+  border:0;
+  background:transparent;
+  color:#475569;
+  text-align:left;
+  padding:11px 12px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+
+.nav button:hover,
+.nav button.active{
+  background:#eef2ff;
+  color:var(--primary);
+  font-weight:600
+}
+
+.nav .ai-link{
+  color:#0891b2
+}
+
+.sidebar-footer{
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:18px;
+  border-top:1px solid var(--border);
+  padding-top:14px
+}
+
+.main{
+  margin-left:248px;
+  width:calc(100% - 248px);
+  min-height:100vh
+}
+
+.topbar{
+  height:68px;
+  background:rgba(248,250,252,.88);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(226,232,240,.8);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 34px;
+  position:sticky;
+  top:0;
+  z-index:10
+}
+
+.crumb{
+  font-size:13px;
+  color:var(--muted)
+}
+
+.top-actions{
+  display:flex;
+  gap:8px;
+  align-items:center
+}
+
+.icon-btn{
+  border:1px solid var(--border);
+  background:#fff;
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  color:#475569
+}
+
+.avatar{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#dbeafe;
+  color:#1e40af;
+  display:grid;
+  place-items:center;
+  font-weight:700;
+  font-size:13px
+}
+
+.page{
+  max-width:1180px;
+  margin:0 auto;
+  padding:34px
+}
+
+.page-head{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-end;
+  margin-bottom:24px
+}
+
+.eyebrow{
+  font-size:12px;
+  color:var(--primary);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:7px
+}
+
+.page-head h1{
+  font-size:30px;
+  letter-spacing:-.03em
+}
+
+.subtitle{
+  color:var(--muted);
+  margin-top:8px;
+  line-height:1.6
+}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow)
+}
+
+.btn{
+  border:1px solid var(--border);
+  background:#fff;
+  color:var(--text);
+  border-radius:9px;
+  padding:10px 14px;
+  font-weight:600;
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  justify-content:center
+}
+
+.btn:hover{
+  background:var(--soft)
+}
+
+.btn.primary{
+  background:var(--primary);
+  border-color:var(--primary);
+  color:#fff
+}
+
+.btn.primary:hover{
+  background:var(--primary-dark)
+}
+
+.btn.ai{
+  background:linear-gradient(135deg,var(--primary),var(--ai));
+  border:0;
+  color:#fff
+}
+
+.material-symbols-outlined{
+  font-size:20px;
+  vertical-align:middle
+}
+
+.hero{
+  padding:30px;
+  background:linear-gradient(135deg,#eef2ff 0%,#fff 55%,#ecfeff 100%);
+  overflow:hidden;
+  position:relative
+}
+
+.hero h1{
+  font-size:34px;
+  max-width:720px
+}
+
+.hero p{
+  max-width:680px;
+  color:#475569;
+  line-height:1.7;
+  margin:10px 0 22px
+}
+
+.search{
+  display:flex;
+  align-items:center;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:0 13px;
+  height:50px;
+  max-width:760px;
+  box-shadow:0 8px 24px rgba(15,23,42,.05)
+}
+
+.search input{
+  border:0;
+  outline:0;
+  flex:1;
+  padding:0 10px;
+  background:transparent;
+  color:var(--text)
+}
+
+.chips{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px
+}
+
+.chip{
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:999px;
+  padding:7px 11px;
+  font-size:12px;
+  color:#475569
+}
+
+.chip:hover{
+  border-color:#c7d2fe;
+  color:var(--primary)
+}
+
+.grid{
+  display:grid;
+  gap:16px
+}
+
+.grid-4{
+  grid-template-columns:repeat(4,1fr)
+}
+
+.grid-3{
+  grid-template-columns:repeat(3,1fr)
+}
+
+.grid-2{
+  grid-template-columns:repeat(2,1fr)
+}
+
+.section{
+  margin-top:26px
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px
+}
+
+.section-head h2{
+  font-size:18px
+}
+
+.muted{
+  color:var(--muted);
+  font-size:13px
+}
+
+.stat{
+  padding:18px
+}
+
+.stat-top{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:12px
+}
+
+.stat-num{
+  font:700 25px "Plus Jakarta Sans";
+  margin-top:10px
+}
+
+.stat-accent{
+  color:var(--primary)
+}
+
+.category{
+  padding:17px;
+  display:flex;
+  gap:12px;
+  align-items:center
+}
+
+.cat-icon{
+  width:40px;
+  height:40px;
+  border-radius:11px;
+  background:#eef2ff;
+  color:var(--primary);
+  display:grid;
+  place-items:center
+}
+
+.category strong{
+  display:block;
+  font-size:14px
+}
+
+.category span{
+  font-size:12px;
+  color:var(--muted)
+}
+
+.notice{
+  padding:18px
+}
+
+.notice-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700
+}
+
+.badge.workshop{
+  background:#ecfeff;
+  color:#0e7490
+}
+
+.badge.placement{
+  background:#eef2ff;
+  color:#4338ca
+}
+
+.badge.event{
+  background:#fef3c7;
+  color:#92400e
+}
+
+.badge.scholarship{
+  background:#ecfdf5;
+  color:#047857
+}
+
+.badge.academic{
+  background:#f1f5f9;
+  color:#475569
+}
+
+.notice h3{
+  font-size:16px;
+  margin-top:12px
+}
+
+.notice p{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.55;
+  margin:8px 0
+}
+
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  color:#64748b;
+  font-size:11px;
+  margin:12px 0
+}
+
+.deadline{
+  font-size:12px;
+  font-weight:700;
+  color:var(--danger)
+}
+
+.notice-actions{
+  display:flex;
+  gap:8px;
+  margin-top:14px
+}
+
+.notice-actions .btn{
+  flex:1;
+  padding:9px 10px;
+  font-size:12px
+}
+
+.bookmark{
+  width:38px;
+  flex:0!important
+}
+
+.filters{
+  padding:14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center
+}
+
+.filters input,
+.filters select,
+.form-control{
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:#fff;
+  padding:10px 11px;
+  outline:0
+}
+
+.filters input{
+  min-width:240px;
+  flex:1
+}
+
+.filters input:focus,
+.filters select:focus,
+.form-control:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(79,70,229,.1)
+}
+
+.deadline-card{
+  padding:18px
+}
+
+.deadline-card .date{
+  font:700 20px "Plus Jakarta Sans";
+  margin:5px 0
+}
+
+.deadline-card .bar{
+  height:6px;
+  background:#e2e8f0;
+  border-radius:99px;
+  overflow:hidden;
+  margin:12px 0
+}
+
+.deadline-card .bar span{
+  display:block;
+  height:100%;
+  background:var(--warning);
+  width:72%
+}
+
+.ai-hero{
+  padding:28px;
+  text-align:center;
+  background:linear-gradient(135deg,#eef2ff,#ecfeff)
+}
+
+.ai-orb{
+  width:54px;
+  height:54px;
+  border-radius:16px;
+  margin:0 auto 14px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--ai));
+  box-shadow:0 12px 28px rgba(6,182,212,.2)
+}
+
+.ai-hero h1{
+  font-size:28px
+}
+
+.ai-hero p{
+  color:var(--muted);
+  margin:8px auto 20px
+}
+
+.prompt-grid{
+  max-width:780px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px
+}
+
+.prompt{
+  border:1px solid var(--border);
+  background:#fff;
+  padding:11px;
+  border-radius:10px;
+  text-align:left;
+  font-size:12px;
+  color:#334155
+}
+
+.chat{
+  max-width:900px;
+  margin:20px auto
+}
+
+.message{
+  display:flex;
+  margin:12px 0
+}
+
+.message.user{
+  justify-content:flex-end
+}
+
+.bubble{
+  max-width:76%;
+  padding:13px 15px;
+  border-radius:14px;
+  line-height:1.6;
+  font-size:13px
+}
+
+.user .bubble{
+  background:#eef2ff
+}
+
+.assistant .bubble{
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow)
+}
+
+.source{
+  font-size:11px;
+  color:var(--primary);
+  margin-top:10px
+}
+
+.chat-input{
+  position:sticky;
+  bottom:12px;
+  display:flex;
+  gap:8px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);
+  padding:8px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  box-shadow:0 12px 30px rgba(15,23,42,.08)
+}
+
+.chat-input input{
+  flex:1;
+  border:0;
+  outline:0;
+  padding:8px
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.chat-header-bar {
+  max-width: 900px;
+  margin: 20px auto 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-clear-btn {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  color: #475569;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.chat-clear-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.detail{
+  display:grid;
+  grid-template-columns:1.6fr .8fr;
+  gap:18px
+}
+
+.detail-main,
+.detail-side{
+  padding:24px
+}
+
+.detail-main h1{
+  font-size:30px
+}
+
+.detail-main p{
+  color:#475569;
+  line-height:1.75
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin:20px 0
+}
+
+.info-item{
+  padding:12px;
+  background:var(--soft);
+  border-radius:10px
+}
+
+.info-item span{
+  font-size:11px;
+  color:var(--muted);
+  display:block
+}
+
+.info-item strong{
+  font-size:13px;
+  display:block;
+  margin-top:3px
+}
+
+.deadline-box{
+  padding:18px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  border-radius:13px
+}
+
+.deadline-box .big{
+  font:700 22px "Plus Jakarta Sans";
+  margin:5px 0;
+  color:#9a3412
+}
+
+.table-wrap{
+  overflow:auto
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse
+}
+
+.table th,
+.table td{
+  text-align:left;
+  padding:13px 14px;
+  border-bottom:1px solid var(--border);
+  font-size:12px
+}
+
+.table th{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--muted);
+  background:#f8fafc
+}
+
+.status{
+  font-size:11px;
+  font-weight:700;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#ecfdf5;
+  color:#047857
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px
+}
+
+.form-field{
+  display:grid;
+  gap:7px
+}
+
+.form-field.full{
+  grid-column:1/-1
+}
+
+.form-field label{
+  font-size:12px;
+  font-weight:700
+}
+
+.form-control{
+  width:100%
+}
+
+textarea.form-control{
+  min-height:130px;
+  resize:vertical
+}
+
+.preview{
+  padding:20px;
+  background:#f8fafc;
+  border-radius:12px;
+  border:1px dashed #cbd5e1
+}
+
+.upload{
+  border:1px dashed #94a3b8;
+  padding:24px;
+  text-align:center;
+  border-radius:12px;
+  color:var(--muted)
+}
+
+.empty{
+  padding:44px;
+  text-align:center
+}
+
+.empty .material-symbols-outlined{
+  font-size:44px;
+  color:#94a3b8
+}
+
+.empty h3{
+  margin-top:10px;
+  font-size:17px
+}
+
+.empty p{
+  color:var(--muted);
+  font-size:13px
+}
+
+.mobile-nav{
+  display:none
+}
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#0f172a;
+  color:#fff;
+  padding:12px 15px;
+  border-radius:10px;
+  box-shadow:0 15px 35px rgba(15,23,42,.2);
+  font-size:12px;
+  z-index:100;
+  opacity:0;
+  transform:translateY(8px);
+  transition:.2s
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateY(0)
+}
+
+@media(max-width:900px){
+  .sidebar{display:none}
+
+  .main{
+    margin-left:0;
+    width:100%
+  }
+
+  .topbar{
+    padding:0 16px
+  }
+
+  .page{
+    padding:22px 16px
+  }
+
+  .grid-4{
+    grid-template-columns:repeat(2,1fr)
+  }
+
+  .grid-3{
+    grid-template-columns:1fr 1fr
+  }
+
+  .detail{
+    grid-template-columns:1fr
+  }
+
+  .mobile-nav{
+    display:flex;
+    position:fixed;
+    bottom:10px;
+    left:10px;
+    right:10px;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(14px);
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-shadow:0 12px 30px rgba(15,23,42,.1);
+    z-index:30;
+    padding:7px;
+    justify-content:space-around
+  }
+
+  .mobile-nav button{
+    background:none;
+    border:0;
+    color:#64748b;
+    font-size:10px;
+    display:grid;
+    gap:2px;
+    place-items:center
+  }
+
+  .mobile-nav button.active{
+    color:var(--primary);
+    font-weight:700
+  }
+
+  .mobile-nav .material-symbols-outlined{
+    font-size:20px
+  }
+}
+
+@media(max-width:600px){
+  .grid-4,
+  .grid-3,
+  .grid-2,
+  .prompt-grid,
+  .form-grid,
+  .info-grid{
+    grid-template-columns:1fr
+  }
+
+  .page-head{
+    align-items:flex-start;
+    flex-direction:column
+  }
+
+  .hero h1{
+    font-size:28px
+  }
+
+  .detail-main h1{
+    font-size:25px
+  }
+
+  .filters input{
+    min-width:100%
+  }
+
+  .topbar{
+    height:60px
+  }
+
+  .page{
+    padding-top:22px
+  }
+
+  .hero{
+    padding:22px
+  }
+
+  .notice-actions{
+    flex-wrap:wrap
+  }
+
+  .notice-actions .btn:first-child{
+    flex-basis:100%
+  }
+}
+
+/* =========================================================
+   CAMPUSAI AUTHENTICATION
+   CAMPUSAI_AUTH_V1
+   Local development authentication only.
+   Production authentication will use Amazon Cognito.
+   ========================================================= */
+
+#authView{
+  min-height:100vh;
+  width:100%;
+}
+
+.auth-page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  background:linear-gradient(135deg,#eef2ff,#f8fafc);
+}
+
+.auth-container{
+  width:min(1050px,100%);
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(15,23,42,.12);
+}
+
+.auth-brand{
+  padding:55px;
+  background:linear-gradient(145deg,#312e81,#4f46e5);
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.auth-brand .material-symbols-outlined{
+  font-size:50px;
+  margin-bottom:20px;
+}
+
+.auth-brand h1{
+  font-size:42px;
+  margin:0 0 12px;
+  line-height:1.1;
+}
+
+.auth-brand p{
+  opacity:.88;
+  line-height:1.7;
+  max-width:470px;
+}
+
+.auth-card{
+  padding:45px;
+}
+
+.auth-card h2{
+  margin:0 0 8px;
+  font-size:28px;
+}
+
+.auth-subtitle{
+  color:#64748b;
+  margin-bottom:25px;
+  line-height:1.5;
+}
+
+.role-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:25px;
+}
+
+.role-option{
+  border:1px solid #e2e8f0;
+  background:#fff;
+  border-radius:16px;
+  padding:22px 12px;
+  cursor:pointer;
+  transition:.2s;
+  text-align:center;
+}
+
+.role-option:hover{
+  border-color:#4f46e5;
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(79,70,229,.12);
+}
+
+.role-option .material-symbols-outlined{
+  display:block;
+  font-size:30px;
+  margin-bottom:10px;
+  color:#4f46e5;
+}
+
+.role-option strong{
+  display:block;
+  font-size:14px;
+}
+
+.role-option span{
+  display:block;
+  color:#64748b;
+  font-size:11px;
+  margin-top:5px;
+}
+
+.auth-form{
+  margin-top:20px;
+}
+
+.auth-form label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin:15px 0 7px;
+}
+
+.auth-form input{
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  padding:12px 13px;
+  font-size:14px;
+  outline:none;
+}
+
+.auth-form input:focus{
+  border-color:#4f46e5;
+  box-shadow:0 0 0 3px rgba(79,70,229,.1);
+}
+
+.auth-submit{
+  width:100%;
+  margin-top:20px;
+  border:0;
+  border-radius:10px;
+  padding:13px;
+  background:#4f46e5;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.auth-back{
+  border:0;
+  background:transparent;
+  color:#4f46e5;
+  cursor:pointer;
+  padding:0;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+.auth-error{
+  display:none;
+  margin-top:15px;
+  padding:11px;
+  border-radius:9px;
+  background:#fef2f2;
+  color:#b91c1c;
+  font-size:13px;
+}
+
+.demo-box{
+  margin-top:22px;
+  padding:14px;
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  font-size:12px;
+  color:#475569;
+  line-height:1.6;
+}
+
+.auth-note{
+  margin-top:18px;
+  font-size:11px;
+  color:#94a3b8;
+  line-height:1.5;
+}
+
+.faculty-dashboard{
+  padding:24px;
+}
+
+@media(max-width:800px){
+  .auth-container{
+    grid-template-columns:1fr;
+  }
+
+  .auth-brand{
+    padding:35px;
+  }
+
+  .auth-card{
+    padding:30px;
+  }
+
+  .role-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+</style>
+
+<style>
+/* =========================================================
+   CAMPUSAI_SIGNUP_V1
+   SIGN-UP + PASSWORD VISIBILITY
+   ========================================================= */
+
+.auth-password-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.auth-password-wrap input {
+    width: 100%;
+    padding-right: 48px !important;
+}
+
+.auth-password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    color: #64748b;
+    z-index: 2;
+}
+
+.auth-password-toggle:hover {
+    color: #2563eb;
+}
+
+.signup-extra {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.signup-role-note {
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.auth-link-button {
+    border: none;
+    background: transparent;
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0;
+}
+
+.auth-link-button:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+    .signup-extra {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* END CAMPUSAI_SIGNUP_V1 */
+</style>
+
+
+<style>
+/* CAMPUSAI_AUTH_SIGNUP_FIX_V1 */
+
+.auth-primary-button {
+    width:100%;
+    margin-top:20px;
+    border:0;
+    border-radius:10px;
+    padding:13px;
+    background:#4f46e5;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.auth-primary-button:hover {
+    background:#4338ca;
+}
+
+.auth-field {
+    display:grid;
+    gap:7px;
+    margin-bottom:14px;
+}
+
+.auth-field label {
+    display:block;
+    font-size:13px;
+    font-weight:700;
+}
+
+.auth-logo {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:24px;
+}
+
+.auth-logo-mark {
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#4f46e5;
+    color:#fff;
+    display:grid;
+    place-items:center;
+    font-weight:800;
+}
+
+.auth-logo span {
+    display:block;
+    font-size:11px;
+    color:#64748b;
+    margin-top:2px;
+}
+
+.auth-footer {
+    margin-top:18px;
+    text-align:center;
+    font-size:13px;
+    color:#64748b;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="authView"></div>
+
+
+<div class="app" id="campusShell" style="display:none">
+
+<aside class="sidebar">
+
+  <div class="brand">
+    <div class="brand-mark">✦</div>
+    <div>
+      <div class="brand-name">CampusAI</div>
+      <div class="brand-sub">Your Campus. One Intelligent Place.</div>
+    </div>
+  </div>
+
+  <div class="nav-section">Student</div>
+
+  <div class="nav" id="sideNav">
+
+    <button data-route="home">
+      <span class="material-symbols-outlined">home</span>
+      Home
+    </button>
+
+    <button data-route="notices">
+      <span class="material-symbols-outlined">campaign</span>
+      Notices
+    </button>
+
+    <button data-route="events">
+      <span class="material-symbols-outlined">event</span>
+      Events
+    </button>
+
+    <button data-route="saved">
+      <span class="material-symbols-outlined">bookmark</span>
+      Saved
+    </button>
+
+    <button data-route="ask" class="ai-link">
+      <span class="material-symbols-outlined">auto_awesome</span>
+      Ask CampusAI
+    </button>
+
+  </div>
+
+  <div class="nav-section" id="managementNavSection">Faculty & Admin</div>
+
+  <div class="nav" id="managementNav">
+
+    <button data-route="faculty">
+      <span class="material-symbols-outlined">dashboard</span>
+      Faculty Dashboard
+    </button>
+
+    <button data-route="admin">
+      <span class="material-symbols-outlined">admin_panel_settings</span>
+      Admin Dashboard
+    </button>
+
+    <button data-route="manage">
+      <span class="material-symbols-outlined">list_alt</span>
+      Manage Notices
+    </button>
+
+    <button data-route="create">
+      <span class="material-symbols-outlined">add_circle</span>
+      Create Notice
+    </button>
+
+  </div>
+
+  <div class="sidebar-footer" style="display:flex;flex-direction:column;gap:8px">
+    <button
+      class="btn"
+      style="width:100%"
+      data-route="profile"
+      onclick="navigate('profile')"
+    >
+      <span class="material-symbols-outlined">account_circle</span>
+      My Profile
+    </button>
+    <button
+      class="btn"
+      style="width:100%"
+      onclick="toast('Settings are planned for the next build stage.')"
+    >
+      <span class="material-symbols-outlined">settings</span>
+      Settings
+    </button>
+  </div>
+
+</aside>
+
+<main class="main">
+
+  <header class="topbar">
+
+    <div class="crumb" id="crumb">
+      CampusAI
+    </div>
+
+    <div class="top-actions">
+
+      <button
+        class="icon-btn"
+        onclick="toast('You have 3 new campus updates.')"
+      >
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+
+      <div class="avatar" id="topUserAvatar" style="cursor:pointer" title="My Profile" onclick="navigate('profile')">AS</div>
+
+    </div>
+
+  </header>
+
+  <div id="app"></div>
+
+</main>
+
+</div>
+
+<nav class="mobile-nav" id="mobileNav">
+
+  <button data-route="home">
+    <span class="material-symbols-outlined">home</span>
+    Home
+  </button>
+
+  <button data-route="notices">
+    <span class="material-symbols-outlined">campaign</span>
+    Notices
+  </button>
+
+  <button data-route="events">
+    <span class="material-symbols-outlined">event</span>
+    Events
+  </button>
+
+  <button data-route="saved">
+    <span class="material-symbols-outlined">bookmark</span>
+    Saved
+  </button>
+
+  <button data-route="ask">
+    <span class="material-symbols-outlined">auto_awesome</span>
+    AI
+  </button>
+
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* =========================================================
+   CAMPUSAI FRONTEND
+   ========================================================= */
+
+/*
+   IMPORTANT:
+
+   The frontend talks to Flask using a relative URL.
+
+   That means we will open CampusAI through:
+
+   http://127.0.0.1:5000/
+
+   instead of double-clicking index.html.
+
+   This keeps frontend + backend on the same origin.
+*/
+
+const API_URL = "/api/notices";
+const ASK_API_URL = "/api/ask";
+
+function escapeHtml(str){
+  if(str == null) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+
+/* =========================================================
+   NOTICE DATA
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   There are NO hard-coded notices here.
+
+   Notices come from the Flask backend/database.
+*/
+
+let notices = [];
+
+let noticesLoaded = false;
+
+
+/* =========================================================
+   LOAD NOTICES FROM BACKEND
+   ========================================================= */
+
+async function loadNotices(){
+
+  try{
+
+    const response = await fetch(API_URL);
+
+    if(!response.ok){
+      throw new Error("Failed to load notices");
+    }
+
+    const data = await response.json();
+
+    /*
+       Read previously saved notice IDs from browser storage.
+    */
+
+    let savedIds = [];
+
+    try{
+      savedIds = JSON.parse(
+        localStorage.getItem("campusai_saved_notices") || "[]"
+      );
+    }catch(error){
+      savedIds = [];
+    }
+
+
+    /*
+       Convert backend field names
+       into the names used by the frontend.
+    */
+
+    notices = data.map(n => ({
+
+      id: n.id,
+
+      title: n.title,
+
+      category: n.category || "Academic",
+
+      department: n.department || "All Departments",
+
+      year: n.year || "All Years",
+
+      date: n.event_date || "—",
+
+      deadline: n.deadline || "—",
+
+      venue: n.venue || "—",
+
+      desc: n.description || "",
+
+      priority: n.priority || "Normal",
+
+      saved: savedIds.includes(n.id),
+
+      registration_url: n.registration_url || null,
+
+      document_url: n.document_url || null,
+
+      created_at: n.created_at || null
+
+    }));
+
+
+    noticesLoaded = true;
+
+    render();
+
+  }catch(error){
+
+    console.error("Error loading notices:", error);
+
+    notices = [];
+
+    noticesLoaded = false;
+
+    document.getElementById("app").innerHTML = `
+
+      <div class="page">
+
+        <div class="card empty">
+
+          <span class="material-symbols-outlined">
+            cloud_off
+          </span>
+
+          <h3>
+            Unable to load campus notices
+          </h3>
+
+          <p>
+            Please make sure the CampusAI Flask backend is running.
+          </p>
+
+          <button
+            class="btn primary"
+            onclick="loadNotices()"
+            style="margin-top:14px"
+          >
+            Retry
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   SAVE NOTICE
+   ========================================================= */
+
+function saveSavedIds(){
+
+  const savedIds = notices
+    .filter(n => n.saved)
+    .map(n => n.id);
+
+  localStorage.setItem(
+    "campusai_saved_notices",
+    JSON.stringify(savedIds)
+  );
+
+}
+
+
+function toggleSave(id){
+
+  const n = notices.find(x => x.id === id);
+
+  if(!n){
+    return;
+  }
+
+  n.saved = !n.saved;
+
+  saveSavedIds();
+
+  toast(
+    n.saved
+      ? "Notice saved."
+      : "Notice removed from saved."
+  );
+
+  render();
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+const routeNames = {
+  home:"Home",
+  notices:"Notices",
+  events:"Events",
+  saved:"Saved Notices",
+  ask:"Ask CampusAI",
+  admin:"Admin Dashboard",
+  faculty:"Faculty Dashboard",
+  profile:"My Profile",
+  manage:"Manage Notices",
+  create:"Create Notice",
+  edit:"Edit Notice",
+  detail:"Notice Details"
+};
+
+
+function navigate(route){
+
+  location.hash = route;
+
+  render();
+
+}
+
+
+function current(){
+
+  return location.hash.replace("#","") || "home";
+
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+function toast(msg){
+
+  const t = document.getElementById("toast");
+
+  t.textContent = msg;
+
+  t.classList.add("show");
+
+  setTimeout(
+    () => t.classList.remove("show"),
+    2200
+  );
+
+}
+
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+function iconFor(c){
+
+  return ({
+    Academic:"school",
+    Placement:"work",
+    Event:"emoji_events",
+    Workshop:"school",
+    Scholarship:"savings"
+  })[c] || "campaign";
+
+}
+
+
+function badgeClass(c){
+
+  return String(c || "Academic").toLowerCase();
+
+}
+
+
+/* =========================================================
+   NOTICE CARD
+   ========================================================= */
+
+function noticeCard(n){
+
+  return `
+
+    <article class="card notice">
+
+      <div class="notice-top">
+
+        <span class="badge ${badgeClass(n.category)}">
+
+          <span
+            class="material-symbols-outlined"
+            style="font-size:15px"
+          >
+            ${iconFor(n.category)}
+          </span>
+
+          ${n.category}
+
+        </span>
+
+        ${
+          n.priority === "Important"
+          ?
+          `
+            <span
+              class="badge"
+              style="background:#fff1f2;color:#be123c"
+            >
+              Important
+            </span>
+          `
+          :
+          ""
+        }
+
+        ${
+          n.priority === "Urgent"
+          ?
+          `
+            <span
+              class="badge"
+              style="background:#fff1f2;color:#be123c"
+            >
+              Urgent
+            </span>
+          `
+          :
+          ""
+        }
+
+      </div>
+
+      <h3>${n.title}</h3>
+
+      <p>${n.desc}</p>
+
+      <div class="meta">
+
+        <span>🏫 ${n.department}</span>
+
+        <span>📅 ${n.date}</span>
+
+        <span>📍 ${n.venue}</span>
+
+      </div>
+
+      <div class="deadline">
+
+        ⏰ Registration deadline: ${n.deadline}
+
+      </div>
+
+      <div class="notice-actions">
+
+        <button
+          class="btn primary"
+          onclick="navigate('detail-${n.id}')"
+        >
+          View Details
+        </button>
+
+        <button
+          class="btn bookmark"
+          onclick="toggleSave(${n.id})"
+        >
+
+          <span class="material-symbols-outlined">
+
+            ${n.saved ? "bookmark" : "bookmark_border"}
+
+          </span>
+
+        </button>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   HOME PAGE
+   ========================================================= */
+
+function home(){
+
+  const academicCount =
+    notices.filter(n => n.category === "Academic").length;
+
+  const placementCount =
+    notices.filter(n => n.category === "Placement").length;
+
+  const eventCount =
+    notices.filter(n => n.category === "Event").length;
+
+  const scholarshipCount =
+    notices.filter(n => n.category === "Scholarship").length;
+
+
+  const importantNotices =
+    notices
+      .filter(n => n.priority === "Important")
+      .slice(0,3);
+
+
+  const upcoming =
+    notices
+      .filter(n => n.deadline && n.deadline !== "—")
+      .slice(0,3);
+
+
+  return `
+
+    <div class="page">
+
+      <section class="card hero">
+
+        <div class="eyebrow">
+          Student Dashboard
+        </div>
+
+        <h1>
+          Good morning, ${
+            getSession()?.name || "Student"
+          } 👋
+        </h1>
+
+        <p>
+          Stay updated with everything happening on campus.
+          Discover official notices, opportunities, events and
+          deadlines in one intelligent place.
+        </p>
+
+        <div class="search">
+
+          <span class="material-symbols-outlined">
+            search
+          </span>
+
+          <input
+            id="homeSearch"
+            placeholder="Search notices, events, deadlines, scholarships..."
+            onkeydown="
+              if(event.key==='Enter'){
+                renderNotices(this.value)
+              }
+            "
+          >
+
+          <button
+            class="btn primary"
+            onclick="
+              const q=document.getElementById('homeSearch').value;
+              renderNotices(q);
+            "
+          >
+            Search
+          </button>
+
+        </div>
+
+        <div class="chips">
+
+          <button
+            class="chip"
+            onclick="renderNotices('Hackathon')"
+          >
+            Hackathons
+          </button>
+
+          <button
+            class="chip"
+            onclick="renderNotices('Placement')"
+          >
+            Placements
+          </button>
+
+          <button
+            class="chip"
+            onclick="renderNotices('Scholarship')"
+          >
+            Scholarships
+          </button>
+
+          <button
+            class="chip"
+            onclick="renderNotices('Workshop')"
+          >
+            Workshops
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <div class="section grid grid-4">
+
+        <button
+          class="card category"
+          onclick="navigate('notices')"
+          style="text-align:left;border:1px solid var(--border)"
+        >
+
+          <span class="cat-icon material-symbols-outlined">
+            school
+          </span>
+
+          <span>
+            <strong>Academic</strong>
+            <span>${academicCount} active notices</span>
+          </span>
+
+        </button>
+
+
+        <button
+          class="card category"
+          onclick="navigate('notices')"
+          style="text-align:left;border:1px solid var(--border)"
+        >
+
+          <span class="cat-icon material-symbols-outlined">
+            work
+          </span>
+
+          <span>
+            <strong>Placements</strong>
+            <span>${placementCount} active notices</span>
+          </span>
+
+        </button>
+
+
+        <button
+          class="card category"
+          onclick="navigate('notices')"
+          style="text-align:left;border:1px solid var(--border)"
+        >
+
+          <span class="cat-icon material-symbols-outlined">
+            event
+          </span>
+
+          <span>
+            <strong>Events</strong>
+            <span>${eventCount} active notices</span>
+          </span>
+
+        </button>
+
+
+        <button
+          class="card category"
+          onclick="navigate('notices')"
+          style="text-align:left;border:1px solid var(--border)"
+        >
+
+          <span class="cat-icon material-symbols-outlined">
+            savings
+          </span>
+
+          <span>
+            <strong>Scholarships</strong>
+            <span>${scholarshipCount} active notices</span>
+          </span>
+
+        </button>
+
+      </div>
+
+
+      <section class="section">
+
+        <div class="section-head">
+
+          <h2>
+            Important for you
+          </h2>
+
+          <button
+            class="btn"
+            onclick="navigate('notices')"
+          >
+            View all
+          </button>
+
+        </div>
+
+        <div class="grid grid-3">
+
+          ${
+            importantNotices.length
+            ?
+            importantNotices.map(noticeCard).join("")
+            :
+            `
+              <div
+                class="card empty"
+                style="grid-column:1/-1"
+              >
+                <span class="material-symbols-outlined">
+                  campaign
+                </span>
+                <h3>No important notices</h3>
+                <p>New important announcements will appear here.</p>
+              </div>
+            `
+          }
+
+        </div>
+
+      </section>
+
+
+      <section class="section">
+
+        <div class="section-head">
+
+          <h2>
+            Upcoming deadlines
+          </h2>
+
+          <span class="muted">
+            Don't miss important dates
+          </span>
+
+        </div>
+
+        <div class="grid grid-3">
+
+          ${
+            upcoming.length
+            ?
+            upcoming.map(n => `
+
+              <div class="card deadline-card">
+
+                <div class="muted">
+                  ${n.category}
+                </div>
+
+                <strong>
+                  ${n.title}
+                </strong>
+
+                <div class="date">
+                  ${n.deadline}
+                </div>
+
+                <div class="bar">
+                  <span></span>
+                </div>
+
+                <div class="muted">
+                  Registration deadline
+                </div>
+
+              </div>
+
+            `).join("")
+            :
+            `
+              <div
+                class="card empty"
+                style="grid-column:1/-1"
+              >
+                <span class="material-symbols-outlined">
+                  event_busy
+                </span>
+                <h3>No upcoming deadlines</h3>
+                <p>New deadlines will appear here.</p>
+              </div>
+            `
+          }
+
+        </div>
+
+      </section>
+
+
+      <section class="section card ai-hero">
+
+        <div class="ai-orb">
+
+          <span class="material-symbols-outlined">
+            auto_awesome
+          </span>
+
+        </div>
+
+        <h2>
+          Need help finding something?
+        </h2>
+
+        <p>
+          Ask CampusAI about campus notices,
+          deadlines, events and opportunities.
+        </p>
+
+        <button
+          class="btn ai"
+          onclick="navigate('ask')"
+        >
+          Ask CampusAI
+
+          <span class="material-symbols-outlined">
+            arrow_forward
+          </span>
+
+        </button>
+
+      </section>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   NOTICES PAGE
+   ========================================================= */
+
+function noticesPage(){
+
+  return `
+
+    <div class="page">
+
+      <div class="page-head">
+
+        <div>
+
+          <div class="eyebrow">
+            Discover
+          </div>
+
+          <h1>
+            Campus Notices
+          </h1>
+
+          <div class="subtitle">
+            Browse the latest announcements and opportunities
+            from across campus.
+          </div>
+
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+
+          <button
+            class="btn"
+            id="refreshNoticesBtn"
+            onclick="refreshNoticesUI(this)"
+            title="Reload notices from server"
+          >
+            <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:4px;">
+              refresh
+            </span>
+            Refresh Notices
+          </button>
+
+          <button
+            class="btn ai"
+            onclick="navigate('ask')"
+          >
+
+            <span class="material-symbols-outlined">
+              auto_awesome
+            </span>
+
+            Ask CampusAI
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="card filters">
+
+        <input
+          id="noticeSearch"
+          placeholder="Search campus notices..."
+          oninput="filterNotices()"
+        >
+
+        <select
+          id="categoryFilter"
+          onchange="filterNotices()"
+        >
+
+          <option value="">
+            All categories
+          </option>
+
+          <option>
+            Academic
+          </option>
+
+          <option>
+            Placement
+          </option>
+
+          <option>
+            Event
+          </option>
+
+          <option>
+            Workshop
+          </option>
+
+          <option>
+            Scholarship
+          </option>
+
+        </select>
+
+
+        <select
+          id="deptFilter"
+          onchange="filterNotices()"
+        >
+
+          <option value="">
+            All Departments
+          </option>
+
+          <option>
+            Artificial Intelligence
+          </option>
+
+          <option>
+            Computer
+          </option>
+
+          <option>
+            Electronics and Telecommunication
+          </option>
+
+          <option>
+            Mechanical
+          </option>
+
+          <option>
+            All Departments
+          </option>
+
+        </select>
+
+
+        <button
+          class="btn"
+          onclick="
+            document.getElementById('noticeSearch').value='';
+            document.getElementById('categoryFilter').value='';
+            document.getElementById('deptFilter').value='';
+            filterNotices()
+          "
+        >
+          Clear
+        </button>
+
+      </div>
+
+
+      <div class="chips">
+
+        <button
+          class="chip"
+          onclick="setCat('')"
+        >
+          All
+        </button>
+
+        <button
+          class="chip"
+          onclick="setCat('Placement')"
+        >
+          Placements
+        </button>
+
+        <button
+          class="chip"
+          onclick="setCat('Event')"
+        >
+          Events
+        </button>
+
+        <button
+          class="chip"
+          onclick="setCat('Workshop')"
+        >
+          Workshops
+        </button>
+
+        <button
+          class="chip"
+          onclick="setCat('Scholarship')"
+        >
+          Scholarships
+        </button>
+
+      </div>
+
+
+      <div
+        class="section grid grid-2"
+        id="noticeResults"
+      >
+
+        ${
+          notices.length
+          ?
+          notices.map(noticeCard).join("")
+          :
+          `
+            <div
+              class="card empty"
+              style="grid-column:1/-1"
+            >
+              <span class="material-symbols-outlined">
+                campaign
+              </span>
+
+              <h3>
+                No notices available
+              </h3>
+
+              <p>
+                Published campus notices will appear here.
+              </p>
+
+            </div>
+          `
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function setCat(c){
+
+  document.getElementById("categoryFilter").value = c;
+
+  filterNotices();
+
+}
+
+
+function filterNotices(){
+
+  const q =
+    (
+      document.getElementById("noticeSearch")?.value || ""
+    ).toLowerCase();
+
+  const c =
+    document.getElementById("categoryFilter")?.value || "";
+
+  const d =
+    document.getElementById("deptFilter")?.value || "";
+
+
+  const list = notices.filter(n =>
+
+    (
+      !q ||
+      `${n.title} ${n.desc} ${n.category} ${n.department}`
+        .toLowerCase()
+        .includes(q)
+    )
+
+    &&
+
+    (!c || n.category === c)
+
+    &&
+
+    (!d || n.department === d)
+
+  );
+
+
+  document.getElementById("noticeResults").innerHTML =
+
+    list.length
+
+    ?
+
+    list.map(noticeCard).join("")
+
+    :
+
+    `
+      <div
+        class="card empty"
+        style="grid-column:1/-1"
+      >
+
+        <span class="material-symbols-outlined">
+          search_off
+        </span>
+
+        <h3>
+          No notices found
+        </h3>
+
+        <p>
+          Try a different search or clear your filters.
+        </p>
+
+      </div>
+    `;
+
+}
+
+
+/* =========================================================
+   REFRESH NOTICES
+   ========================================================= */
+
+async function refreshNoticesUI(btn){
+  if(btn){
+    btn.disabled = true;
+    btn.innerHTML = `
+      <span class="material-symbols-outlined" style="animation:spin 1s linear infinite;font-size:18px;vertical-align:middle;margin-right:4px;">
+        sync
+      </span>
+      Refreshing...
+    `;
+  }
+  try {
+    await loadNotices();
+    toast("Notices refreshed successfully!");
+    render();
+  } catch(err){
+    console.error(err);
+    toast("Failed to refresh notices.");
+  } finally {
+    if(btn){
+      btn.disabled = false;
+      btn.innerHTML = `
+        <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:4px;">
+          refresh
+        </span>
+        Refresh Notices
+      `;
+    }
+  }
+}
+
+
+/* =========================================================
+   EVENTS PAGE
+   ========================================================= */
+
+function eventsPage(){
+
+  const es =
+    notices.filter(
+      n =>
+        n.category === "Event" ||
+        n.category === "Workshop"
+    );
+
+
+  const featured = es[0];
+
+
+  return `
+
+    <div class="page">
+
+      <div class="page-head">
+
+        <div>
+
+          <div class="eyebrow">
+            Discover
+          </div>
+
+          <h1>
+            Campus Events
+          </h1>
+
+          <div class="subtitle">
+            Workshops, hackathons, competitions and student activities.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      ${
+        featured
+        ?
+        `
+          <div
+            class="card hero"
+            style="margin-bottom:18px"
+          >
+
+            <div class="eyebrow">
+              Featured Event
+            </div>
+
+            <h2 style="font-size:26px">
+              ${featured.title}
+            </h2>
+
+            <p>
+              ${featured.desc}
+            </p>
+
+            <button
+              class="btn primary"
+              onclick="navigate('detail-${featured.id}')"
+            >
+              View Event
+            </button>
+
+          </div>
+        `
+        :
+        ""
+      }
+
+
+      <div class="grid grid-2">
+
+        ${
+          es.length
+          ?
+          es.map(noticeCard).join("")
+          :
+          `
+            <div
+              class="card empty"
+              style="grid-column:1/-1"
+            >
+
+              <span class="material-symbols-outlined">
+                event_busy
+              </span>
+
+              <h3>
+                No events available
+              </h3>
+
+              <p>
+                New campus events will appear here.
+              </p>
+
+            </div>
+          `
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SAVED PAGE
+   ========================================================= */
+
+function savedPage(){
+
+  const s =
+    notices.filter(n => n.saved);
+
+
+  return `
+
+    <div class="page">
+
+      <div class="page-head">
+
+        <div>
+
+          <div class="eyebrow">
+            Your list
+          </div>
+
+          <h1>
+            Saved Notices
+          </h1>
+
+          <div class="subtitle">
+            Keep track of announcements and opportunities
+            you don't want to miss.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      ${
+        s.length
+
+        ?
+
+        `
+          <div class="grid grid-2">
+            ${s.map(noticeCard).join("")}
+          </div>
+        `
+
+        :
+
+        `
+          <div class="card empty">
+
+            <span class="material-symbols-outlined">
+              bookmark_border
+            </span>
+
+            <h3>
+              Nothing saved yet
+            </h3>
+
+            <p>
+              Save important notices to find them quickly later.
+            </p>
+
+            <button
+              class="btn primary"
+              onclick="navigate('notices')"
+            >
+              Browse Notices
+            </button>
+
+          </div>
+        `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ASK CAMPUSAI
+   ========================================================= */
+
+function askPage(){
+
+  return `
+
+    <div class="page">
+
+      <section class="card ai-hero">
+
+        <div class="ai-orb">
+
+          <span class="material-symbols-outlined">
+            auto_awesome
+          </span>
+
+        </div>
+
+        <div class="eyebrow">
+          Campus Intelligence
+        </div>
+
+        <h1>
+          Ask CampusAI
+        </h1>
+
+        <p>
+          Your AI assistant for campus information.
+        </p>
+
+
+        <div class="prompt-grid">
+
+          ${
+            [
+              "What deadlines are coming up?",
+              "Show me upcoming workshops.",
+              "What opportunities are available for third-year students?",
+              "Find upcoming hackathons."
+            ]
+            .map(q => `
+
+              <button
+                class="prompt"
+                onclick="ask('${q.replaceAll("'","\\'")}')"
+              >
+
+                ${q}
+
+                <span
+                  class="material-symbols-outlined"
+                  style="float:right;font-size:16px"
+                >
+                  arrow_forward
+                </span>
+
+              </button>
+
+            `)
+            .join("")
+          }
+
+        </div>
+
+      </section>
+
+      <div class="chat-header-bar">
+        <span style="font-size:12px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">CampusAI Assistant</span>
+        <button
+          class="chat-clear-btn"
+          onclick="clearChat()"
+          title="Reset chat conversation"
+        >
+          <span class="material-symbols-outlined" style="font-size:15px">
+            delete_sweep
+          </span>
+          Clear Chat
+        </button>
+      </div>
+
+      <div
+        class="chat"
+        id="chat"
+      >
+
+        <div class="message assistant">
+
+          <div class="bubble">
+
+            <strong>
+              CampusAI Intelligence
+            </strong>
+
+            <br>
+
+            Hi! Ask me about campus notices,
+            events, deadlines and opportunities.
+            I'll use available campus information
+            to help you find the right notice.
+
+            <div class="source">
+              Tip: Always verify important dates with the official notice.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="chat-input">
+
+        <input
+          id="chatInput"
+          placeholder="Ask CampusAI about campus..."
+          onkeydown="
+            if(event.key==='Enter')
+              sendQuestion()
+          "
+        >
+
+        <button
+          class="btn ai"
+          onclick="sendQuestion()"
+        >
+
+          <span class="material-symbols-outlined">
+            send
+          </span>
+
+          Ask
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function ask(q){
+
+  document.getElementById("chatInput").value = q;
+
+  sendQuestion();
+
+}
+
+
+async function sendQuestion(){
+
+  const input =
+    document.getElementById("chatInput");
+
+  const sendBtn =
+    document.querySelector(".chat-input button");
+
+  if(!input){
+    return;
+  }
+
+  const q =
+    input.value.trim();
+
+  if(!q){
+    return;
+  }
+
+  const chat =
+    document.getElementById("chat");
+
+  if(!chat){
+    return;
+  }
+
+  // Render user question bubble
+  chat.insertAdjacentHTML(
+    "beforeend",
+    `
+      <div class="message user">
+        <div class="bubble">
+          ${escapeHtml(q)}
+        </div>
+      </div>
+    `
+  );
+
+  // Clear input and show loading indicator
+  input.value = "";
+  input.disabled = true;
+  if(sendBtn) sendBtn.disabled = true;
+
+  const loadingId = "aiLoading_" + Date.now();
+  chat.insertAdjacentHTML(
+    "beforeend",
+    `
+      <div class="message assistant" id="${loadingId}">
+        <div class="bubble" style="display:flex;align-items:center;gap:10px;color:#64748b;">
+          <span class="material-symbols-outlined" style="animation:spin 1.2s linear infinite;font-size:18px;color:var(--primary);">
+            sync
+          </span>
+          <span>CampusAI is thinking...</span>
+        </div>
+      </div>
+    `
+  );
+
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
+
+  try {
+    const res = await fetch("/api/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ question: q })
+    });
+
+    const loadingElem = document.getElementById(loadingId);
+    if(loadingElem) loadingElem.remove();
+
+    if(!res.ok){
+      const errData = await res.json().catch(() => ({}));
+      const errMsg = errData.error || `Server responded with status ${res.status}`;
+      chat.insertAdjacentHTML(
+        "beforeend",
+        `
+          <div class="message assistant">
+            <div class="bubble" style="border-left:3px solid #ef4444;background:#fef2f2;">
+              <strong style="color:#b91c1c;">CampusAI Assistant Notice</strong>
+              <br><br>
+              <span style="color:#7f1d1d;">${escapeHtml(errMsg)}</span>
+            </div>
+          </div>
+        `
+      );
+    } else {
+      const data = await res.json();
+      const answer = data.answer || "No response received.";
+      const sourcesCount = data.sources && Array.isArray(data.sources) ? data.sources.length : 0;
+      const providerName = data.provider || "CampusAI Intelligence";
+
+      chat.insertAdjacentHTML(
+        "beforeend",
+        `
+          <div class="message assistant">
+            <div class="bubble">
+              <strong>
+                CampusAI Intelligence
+              </strong>
+              <br><br>
+              ${answer}
+              <div class="source">
+                Sources: ${sourcesCount > 0 ? sourcesCount + " campus record(s)" : "Campus database"} •
+                Powered by ${escapeHtml(providerName)}
+              </div>
+            </div>
+          </div>
+        `
+      );
+    }
+  } catch(err) {
+    const loadingElem = document.getElementById(loadingId);
+    if(loadingElem) loadingElem.remove();
+
+    chat.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div class="message assistant">
+          <div class="bubble" style="border-left:3px solid #ef4444;background:#fef2f2;">
+            <strong style="color:#b91c1c;">Connection Error</strong>
+            <br><br>
+            <span style="color:#7f1d1d;">Unable to reach CampusAI Intelligence API at <code>/api/ask</code>. Please verify that the Flask server is running (<code>python app.py</code>).</span>
+          </div>
+        </div>
+      `
+    );
+  } finally {
+    input.disabled = false;
+    if(sendBtn) sendBtn.disabled = false;
+    input.focus();
+
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+      });
+    }, 100);
+  }
+
+}
+
+
+function clearChat(){
+
+  const chat =
+    document.getElementById("chat");
+
+  if(!chat){
+    return;
+  }
+
+  chat.innerHTML = `
+    <div class="message assistant">
+      <div class="bubble">
+        <strong>
+          CampusAI Intelligence
+        </strong>
+        <br><br>
+        Hi! Ask me about campus notices, events, deadlines and opportunities.
+        I'll query available campus records to find the information you need.
+        <div class="source">
+          Tip: Always verify important dates with the official notice.
+        </div>
+      </div>
+    </div>
+  `;
+
+}
+
+
+/* =========================================================
+   DETAIL PAGE
+   ========================================================= */
+
+function detailPage(id){
+
+  const n =
+    notices.find(x => x.id === Number(id));
+
+
+  if(!n){
+    return home();
+  }
+
+
+  return `
+
+    <div class="page">
+
+      <div class="page-head">
+
+        <div>
+
+          <div class="eyebrow">
+            Home → Notices → ${n.category}
+          </div>
+
+          <h1>
+            Notice Details
+          </h1>
+
+        </div>
+
+        <button
+          class="btn"
+          onclick="navigate('notices')"
+        >
+          ← Back to Notices
+        </button>
+
+      </div>
+
+
+      <div class="detail">
+
+
+        <article class="card detail-main">
+
+          <span class="badge ${badgeClass(n.category)}">
+            ${n.category}
+          </span>
+
+
+          <h1 style="margin-top:14px">
+            ${n.title}
+          </h1>
+
+
+          <p>
+            ${n.desc}
+          </p>
+
+
+          <div class="info-grid">
+
+            ${
+              [
+                ["Department",n.department],
+                ["Eligible Students",n.year],
+                ["Date",n.date],
+                ["Venue",n.venue]
+              ]
+              .map(x => `
+
+                <div class="info-item">
+
+                  <span>
+                    ${x[0]}
+                  </span>
+
+                  <strong>
+                    ${x[1]}
+                  </strong>
+
+                </div>
+
+              `)
+              .join("")
+            }
+
+          </div>
+
+
+          <h2
+            style="font-size:19px;margin-top:28px"
+          >
+            About this notice
+          </h2>
+
+
+          <p>
+            This official campus announcement contains
+            the information students need to understand
+            the opportunity, prepare the required details
+            and complete registration before the deadline.
+          </p>
+
+
+          ${
+            n.document_url
+            ?
+
+            `
+              <h2
+                style="font-size:19px;margin-top:28px"
+              >
+                Official Notice
+              </h2>
+
+              <div
+                class="card"
+                style="
+                  padding:14px;
+                  display:flex;
+                  justify-content:space-between;
+                  align-items:center
+                "
+              >
+
+                <span>
+                  📄 ${escapeHtml((n.document_url.split('?')[0].split('#')[0].split('/').filter(Boolean).pop()) || (n.title + '.pdf'))}
+                </span>
+
+                <a
+                  class="btn"
+                  href="/api/documents/${encodeURIComponent((n.document_url.split('?')[0].split('#')[0].split('/').filter(Boolean).pop()) || '')}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View / Download
+                </a>
+
+              </div>
+            `
+
+            :
+
+            `
+              <h2
+                style="font-size:19px;margin-top:28px"
+              >
+                Official Notice
+              </h2>
+
+              <div
+                class="card"
+                style="padding:14px"
+              >
+
+                <span>
+                  📄 Official document not uploaded yet.
+                </span>
+
+              </div>
+            `
+          }
+
+        </article>
+
+
+        <aside class="card detail-side">
+
+
+          <div class="deadline-box">
+
+            <div class="muted">
+              REGISTRATION DEADLINE
+            </div>
+
+            <div class="big">
+              ${n.deadline}
+            </div>
+
+            <div
+              style="
+                color:#9a3412;
+                font-size:12px
+              "
+            >
+              Check the official notice before submitting.
+            </div>
+
+          </div>
+
+
+          ${
+            n.registration_url
+
+            ?
+
+            `
+              <a
+                class="btn primary"
+                style="width:100%;margin-top:12px"
+                href="${n.registration_url}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Register / Apply
+              </a>
+            `
+
+            :
+
+            `
+              <button
+                class="btn"
+                style="width:100%;margin-top:12px"
+                onclick="
+                  toast('Registration link is not available for this notice.')
+                "
+              >
+                Register / Apply
+              </button>
+            `
+          }
+
+
+          <button
+            class="btn"
+            style="width:100%;margin-top:8px"
+            onclick="toggleSave(${n.id})"
+          >
+
+            <span class="material-symbols-outlined">
+              ${n.saved ? "bookmark" : "bookmark_border"}
+            </span>
+
+            ${n.saved ? "Saved" : "Save Notice"}
+
+          </button>
+
+
+          <div class="section">
+
+            <h3 style="font-size:15px">
+              Related notices
+            </h3>
+
+            ${
+              notices
+                .filter(x => x.id !== n.id)
+                .slice(0,3)
+                .map(x => `
+
+                  <button
+                    class="btn"
+                    style="
+                      width:100%;
+                      margin-top:8px;
+                      justify-content:flex-start
+                    "
+                    onclick="navigate('detail-${x.id}')"
+                  >
+                    ${x.title}
+                  </button>
+
+                `)
+                .join("")
+            }
+
+          </div>
+
+
+        </aside>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ADMIN DASHBOARD
+   ========================================================= */
+
+function adminPage(){
+
+  const session = getSession();
+
+  const total =
+    notices.length;
+
+
+  const active =
+    notices.length;
+
+
+  const upcomingEvents =
+    notices.filter(
+      n =>
+        n.category === "Event" ||
+        n.category === "Workshop"
+    ).length;
+
+
+  const expiringSoon =
+    notices.filter(
+      n =>
+        n.deadline &&
+        n.deadline !== "—"
+    ).length;
+
+
+  const categories = [
+    ["Academic","Academic"],
+    ["Events","Event"],
+    ["Placements","Placement"],
+    ["Workshops","Workshop"],
+    ["Scholarships","Scholarship"]
+  ];
+
+
+  return `
+
+    <div class="page">
+
+      <div class="page-head">
+
+        <div>
+
+          <div class="eyebrow">
+            Administration
+          </div>
+
+          <h1>
+            Admin Dashboard
+          </h1>
+
+          <div class="subtitle">
+            Welcome, ${session?.name || "Campus Administrator"}.
+            Manage campus information and announcements.
+          </div>
+
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button
+            class="btn"
+            onclick="navigate('profile')"
+          >
+            <span class="material-symbols-outlined">
+              account_circle
+            </span>
+            My Profile
+          </button>
+
+          <button
+            class="btn primary"
+            onclick="navigate('create')"
+          >
+            <span class="material-symbols-outlined">
+              add
+            </span>
+            Create Notice
+          </button>
+        </div>
+
+      </div>
+
+
+      <div class="grid grid-4">
+
+        ${
+          [
+            ["Total Notices",total],
+            ["Active Notices",active],
+            ["Upcoming Events",upcomingEvents],
+            ["Expiring Soon",expiringSoon]
+          ]
+          .map(x => `
+
+            <div class="card stat">
+
+              <div class="stat-top">
+
+                <span>
+                  ${x[0]}
+                </span>
+
+                <span class="stat-accent">
+                  ●
+                </span>
+
+              </div>
+
+              <div class="stat-num">
+                ${x[1]}
+              </div>
+
+            </div>
+
+          `)
+          .join("")
+        }
+
+      </div>
+
+
+      <section
+        class="section card"
+        style="padding:18px"
+      >
+
+        <div class="section-head">
+
+          <h2>
+            Recent Notices
+          </h2>
+
+          <button
+            class="btn"
+            onclick="navigate('manage')"
+          >
+            Manage all
+          </button>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+          <table class="table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Notice
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Deadline
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              ${
+                notices.slice(0,5).map(n => `
+
+                  <tr>
+
+                    <td>
+
+                      <strong>
+                        ${n.title}
+                      </strong>
+
+                      <br>
+
+                      <span class="muted">
+                        ${n.department}
+                      </span>
+
+                    </td>
+
+                    <td>
+                      ${n.category}
+                    </td>
+
+                    <td>
+                      ${n.deadline}
+                    </td>
+
+                    <td>
+                      <span class="status">
+                        Active
+                      </span>
+                    </td>
+
+                  </tr>
+
+                `).join("")
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <section class="section grid grid-2">
+
+
+        <div
+          class="card"
+          style="padding:18px"
+        >
+
+          <h2 style="font-size:17px">
+            Notices by category
+          </h2>
+
+
+          <div
+            style="
+              margin-top:15px;
+              display:grid;
+              gap:10px
+            "
+          >
+
+            ${
+              categories.map(x => {
+
+                const count =
+                  notices.filter(
+                    n => n.category === x[1]
+                  ).length;
+
+                const width =
+                  notices.length
+                  ? Math.min(
+                      100,
+                      (count / notices.length) * 100
+                    )
+                  : 0;
+
+
+                return `
+
+                  <div>
+
+                    <div
+                      style="
+                        display:flex;
+                        justify-content:space-between;
+                        font-size:12px
+                      "
+                    >
+
+                      <span>
+                        ${x[0]}
+                      </span>
+
+                      <strong>
+                        ${count}
+                      </strong>
+
+                    </div>
+
+                    <div
+                      style="
+                        height:7px;
+                        background:#e2e8f0;
+                        border-radius:99px;
+                        margin-top:5px
+                      "
+                    >
+
+                      <div
+                        style="
+                          width:${width}%;
+                          height:100%;
+                          background:var(--primary);
+                          border-radius:99px
+                        "
+                      ></div>
+
+                    </div>
+
+                  </div>
+
+                `;
+
+              }).join("")
+            }
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="card"
+          style="padding:18px"
+        >
+
+          <h2 style="font-size:17px">
+            Upcoming deadlines
+          </h2>
+
+
+          ${
+            notices.slice(0,4).map(n => `
+
+              <div
+                style="
+                  padding:12px 0;
+                  border-bottom:1px solid var(--border);
+                  font-size:12px
+                "
+              >
+
+                <strong>
+                  ${n.title}
+                </strong>
+
+                <div class="muted">
+                  Due ${n.deadline}
+                </div>
+
+              </div>
+
+            `).join("")
+          }
+
+        </div>
+
+
+      </section>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   MANAGE NOTICES
+   ========================================================= */
+
+function managePage(){
+
+  return `
+
+    <div class="page">
+
+      <div class="page-head">
+
+        <div>
+
+          <div class="eyebrow">
+            Administration
+          </div>
+
+          <h1>
+            Manage Notices
+          </h1>
+
+          <div class="subtitle">
+            Search, review, edit and archive campus announcements.
+          </div>
+
+        </div>
+
+        <button
+          class="btn primary"
+          onclick="navigate('create')"
+        >
+
+          <span class="material-symbols-outlined">
+            add
+          </span>
+
+          Create Notice
+
+        </button>
+
+      </div>
+
+
+      <div class="card filters">
+
+        <input
+          id="manageSearch"
+          placeholder="Search notices..."
+          oninput="filterManageNotices()"
+        >
+
+
+        <select
+          id="manageCategory"
+          onchange="filterManageNotices()"
+        >
+
+          <option value="">
+            All categories
+          </option>
+
+          <option>
+            Academic
+          </option>
+
+          <option>
+            Placement
+          </option>
+
+          <option>
+            Event
+          </option>
+
+          <option>
+            Workshop
+          </option>
+
+          <option>
+            Scholarship
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div
+        class="section card table-wrap"
+      >
+
+        <table class="table">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Notice
+              </th>
+
+              <th>
+                Category
+              </th>
+
+              <th>
+                Department
+              </th>
+
+              <th>
+                Deadline
+              </th>
+
+              <th>
+                Status
+              </th>
+
+              <th>
+                Actions
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody id="manageResults">
+
+            ${manageRows(notices)}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function manageRows(list){
+
+  const session = getSession();
+  const canManage = session && (session.role === "faculty" || session.role === "admin");
+
+  return list.length
+
+    ?
+
+    list.map(n => `
+
+      <tr>
+
+        <td>
+          <strong>
+            ${escapeHtml(n.title)}
+          </strong>
+        </td>
+
+        <td>
+          ${escapeHtml(n.category || "General")}
+        </td>
+
+        <td>
+          ${escapeHtml(n.department || "All Departments")}
+        </td>
+
+        <td>
+          ${escapeHtml(n.deadline || "None")}
+        </td>
+
+        <td>
+          <span class="status">
+            Active
+          </span>
+        </td>
+
+        <td>
+
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+
+            <button
+              class="btn"
+              style="padding:6px 12px;font-size:13px;"
+              onclick="navigate('detail-${n.id}')"
+              title="View notice details"
+            >
+              View
+            </button>
+
+            ${canManage ? `
+              <button
+                class="btn"
+                style="padding:6px 12px;font-size:13px;color:var(--primary);border-color:var(--primary);"
+                onclick="navigate('edit-${n.id}')"
+                title="Edit notice"
+              >
+                <span class="material-symbols-outlined" style="font-size:15px;vertical-align:middle;margin-right:2px;">
+                  edit
+                </span>
+                Edit
+              </button>
+
+              <button
+                class="btn"
+                style="padding:6px 12px;font-size:13px;color:#ef4444;border-color:#fecaca;"
+                onclick="confirmDeleteNotice(${n.id})"
+                title="Delete notice"
+              >
+                <span class="material-symbols-outlined" style="font-size:15px;vertical-align:middle;margin-right:2px;">
+                  delete
+                </span>
+                Delete
+              </button>
+            ` : ""}
+
+          </div>
+
+        </td>
+
+      </tr>
+
+    `).join("")
+
+    :
+
+    `
+      <tr>
+
+        <td
+          colspan="6"
+          style="text-align:center;padding:30px"
+        >
+          No notices found.
+        </td>
+
+      </tr>
+    `;
+
+}
+
+
+/* =========================================================
+   DELETE NOTICE
+   ========================================================= */
+
+function confirmDeleteNotice(id){
+  const existingModal = document.getElementById("deleteConfirmModal");
+  if(existingModal) existingModal.remove();
+
+  const n = notices.find(x => x.id === id);
+  const noticeTitle = n ? n.title : `Notice #${id}`;
+
+  const modalHtml = `
+    <div id="deleteConfirmModal" class="modal-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.6);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(2px);">
+      <div class="card" style="max-width:440px;width:90%;background:#ffffff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);padding:24px;border:1px solid #e2e8f0;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <div style="width:40px;height:40px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;color:#ef4444;flex-shrink:0;">
+            <span class="material-symbols-outlined" style="font-size:22px;">delete</span>
+          </div>
+          <div>
+            <h3 style="margin:0;font-size:18px;color:#0f172a;font-weight:700;">Delete Notice</h3>
+            <p style="margin:2px 0 0 0;font-size:13px;color:#64748b;">Notice ID: #${id}</p>
+          </div>
+        </div>
+        <p style="font-size:14px;color:#334155;line-height:1.5;margin-bottom:20px;">
+          Are you sure you want to delete this notice?
+          <br>
+          <strong style="color:#0f172a;display:block;margin-top:6px;word-break:break-word;">"${escapeHtml(noticeTitle)}"</strong>
+        </p>
+        <div style="display:flex;gap:12px;justify-content:flex-end;">
+          <button type="button" class="btn" onclick="document.getElementById('deleteConfirmModal').remove()" style="font-weight:600;">
+            Cancel
+          </button>
+          <button type="button" id="confirmDeleteBtn" class="btn" onclick="executeDeleteNotice(${id})" style="background:#ef4444;color:#ffffff;border:none;font-weight:600;">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML("beforeend", modalHtml);
+}
+
+
+async function executeDeleteNotice(id){
+  const btn = document.getElementById("confirmDeleteBtn");
+  if(btn){
+    btn.disabled = true;
+    btn.textContent = "Deleting...";
+  }
+  try {
+    const res = await fetch(`/api/notices/${id}`, {
+      method: "DELETE"
+    });
+    const modal = document.getElementById("deleteConfirmModal");
+    if(modal) modal.remove();
+
+    if(!res.ok){
+      const data = await res.json().catch(() => ({}));
+      toast(data.error || "Failed to delete notice.");
+      return;
+    }
+
+    toast("Notice deleted successfully!");
+    await loadNotices();
+    render();
+  } catch(err){
+    console.error(err);
+    const modal = document.getElementById("deleteConfirmModal");
+    if(modal) modal.remove();
+    toast("Network error deleting notice.");
+  }
+}
+
+
+/* =========================================================
+   EDIT NOTICE PAGE & HANDLER
+   ========================================================= */
+
+function editPage(id){
+  const nid = parseInt(id, 10);
+  const n = notices.find(x => x.id === nid);
+
+  if(!n){
+    return `
+      <div class="page">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow">Administration</div>
+            <h1>Notice Not Found</h1>
+            <div class="subtitle">The notice with ID #${escapeHtml(id)} could not be located.</div>
+          </div>
+          <button class="btn" onclick="navigate('manage')">← Back to Manage Notices</button>
+        </div>
+      </div>
+    `;
+  }
+
+  const depts = [
+    "Artificial Intelligence",
+    "Computer",
+    "Electronics and Telecommunication",
+    "Mechanical",
+    "All Departments"
+  ];
+
+  const categories = [
+    "Academic",
+    "Placement",
+    "Event",
+    "Workshop",
+    "Scholarship",
+    "General"
+  ];
+
+  const years = [
+    "All Years",
+    "1st Year",
+    "2nd Year",
+    "3rd Year",
+    "4th Year"
+  ];
+
+  const priorities = [
+    "Normal",
+    "Important",
+    "Urgent"
+  ];
+
+  return `
+    <div class="page">
+      <div class="page-head">
+        <div>
+          <div class="eyebrow">Administration</div>
+          <h1>Edit Notice</h1>
+          <div class="subtitle">Update details for notice #${nid} ("${escapeHtml(n.title)}").</div>
+        </div>
+        <button class="btn" onclick="navigate('manage')">
+          ← Back to Manage Notices
+        </button>
+      </div>
+
+      <div class="card" style="max-width:860px;padding:26px;">
+        <form id="editNoticeForm" onsubmit="updateNotice(event, ${nid})">
+          <div class="form-grid">
+
+            <div class="form-field full">
+              <label>Title <span style="color:#ef4444;">*</span></label>
+              <input
+                id="editNoticeTitle"
+                class="form-control"
+                value="${escapeHtml(n.title || "")}"
+                placeholder="e.g. AWS Cloud Workshop"
+                required
+              >
+            </div>
+
+            <div class="form-field full">
+              <label>Description <span style="color:#ef4444;">*</span></label>
+              <textarea
+                id="editNoticeDescription"
+                class="form-control"
+                rows="4"
+                placeholder="Describe the announcement..."
+                required
+              >${escapeHtml(n.description || n.desc || "")}</textarea>
+            </div>
+
+            <div class="form-field">
+              <label>Category</label>
+              <select id="editNoticeCategory" class="form-control">
+                ${categories.map(c => `<option value="${c}" ${n.category === c ? "selected" : ""}>${c}</option>`).join("")}
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Department</label>
+              <select id="editNoticeDepartment" class="form-control">
+                ${depts.map(d => `<option value="${d}" ${n.department === d ? "selected" : ""}>${d}</option>`).join("")}
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Target Year</label>
+              <select id="editNoticeYear" class="form-control">
+                ${years.map(y => `<option value="${y}" ${n.year === y ? "selected" : ""}>${y}</option>`).join("")}
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Priority</label>
+              <select id="editNoticePriority" class="form-control">
+                ${priorities.map(p => `<option value="${p}" ${n.priority === p ? "selected" : ""}>${p}</option>`).join("")}
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Event Date</label>
+              <input
+                id="editNoticeEventDate"
+                class="form-control"
+                type="date"
+                value="${escapeHtml(n.event_date || "")}"
+              >
+            </div>
+
+            <div class="form-field">
+              <label>Registration Deadline</label>
+              <input
+                id="editNoticeDeadline"
+                class="form-control"
+                type="date"
+                value="${escapeHtml(n.deadline || "")}"
+              >
+            </div>
+
+            <div class="form-field">
+              <label>Venue</label>
+              <input
+                id="editNoticeVenue"
+                class="form-control"
+                value="${escapeHtml(n.venue || "")}"
+                placeholder="e.g. Seminar Hall"
+              >
+            </div>
+
+            <div class="form-field">
+              <label>Registration URL</label>
+              <input
+                id="editNoticeRegistrationUrl"
+                class="form-control"
+                type="url"
+                value="${escapeHtml(n.registration_url || "")}"
+                placeholder="https://..."
+              >
+            </div>
+
+            <div class="form-field full">
+              <label>Official notice document (Optional)</label>
+              <div class="upload" style="border:2px dashed #cbd5e1;border-radius:12px;padding:18px;text-align:center;background:#f8fafc;">
+                <span class="material-symbols-outlined" style="font-size:32px;color:var(--primary);">
+                  cloud_upload
+                </span>
+                <div style="margin-top:6px;font-size:13px;font-weight:600;color:#0f172a;">
+                  Upload Document to Amazon S3
+                </div>
+                <div style="display:flex;gap:10px;justify-content:center;align-items:center;margin-top:10px;flex-wrap:wrap;">
+                  <input
+                    type="file"
+                    id="editNoticeFileInput"
+                    accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg,.txt"
+                    style="display:none;"
+                    onchange="handleNoticeFileSelect(this, 'editNoticeDocumentUrl')"
+                  >
+                  <button
+                    type="button"
+                    class="btn"
+                    onclick="document.getElementById('editNoticeFileInput').click()"
+                    style="background:#ffffff;"
+                  >
+                    <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:4px;">
+                      folder_open
+                    </span>
+                    Choose File
+                  </button>
+                  <span id="editNoticeFileStatus" style="font-size:13px;color:#475569;font-weight:500;">
+                    ${n.document_url ? "Current document attached" : "No file chosen"}
+                  </span>
+                </div>
+              </div>
+              <div style="margin-top:10px;">
+                <label style="font-size:12px;color:#64748b;">Document URL:</label>
+                <input
+                  id="editNoticeDocumentUrl"
+                  class="form-control"
+                  value="${escapeHtml(n.document_url || "")}"
+                  placeholder="https://... (or auto-filled on file upload)"
+                  style="font-size:13px;"
+                >
+              </div>
+            </div>
+
+          </div>
+
+          <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:24px;">
+            <button
+              type="button"
+              class="btn"
+              onclick="navigate('manage')"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              class="btn primary"
+              id="saveNoticeBtn"
+            >
+              <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:4px;">
+                save
+              </span>
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+}
+
+
+async function updateNotice(event, id){
+  event.preventDefault();
+
+  const titleInput = document.getElementById("editNoticeTitle");
+  const descInput = document.getElementById("editNoticeDescription");
+  const saveBtn = document.getElementById("saveNoticeBtn");
+
+  const title = titleInput ? titleInput.value.trim() : "";
+  const description = descInput ? descInput.value.trim() : "";
+
+  if(!title || !description){
+    toast("Title and description are required.");
+    return;
+  }
+
+  const payload = {
+    title: title,
+    description: description,
+    category: document.getElementById("editNoticeCategory")?.value || "General",
+    department: document.getElementById("editNoticeDepartment")?.value || "All Departments",
+    year: document.getElementById("editNoticeYear")?.value || "All Years",
+    priority: document.getElementById("editNoticePriority")?.value || "Normal",
+    event_date: document.getElementById("editNoticeEventDate")?.value || null,
+    deadline: document.getElementById("editNoticeDeadline")?.value || null,
+    venue: document.getElementById("editNoticeVenue")?.value.trim() || null,
+    registration_url: document.getElementById("editNoticeRegistrationUrl")?.value.trim() || null,
+    document_url: document.getElementById("editNoticeDocumentUrl")?.value.trim() || null
+  };
+
+  if(saveBtn){
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = `
+      <span class="material-symbols-outlined" style="animation:spin 1s linear infinite;font-size:18px;vertical-align:middle;margin-right:4px;">
+        sync
+      </span>
+      Saving Changes...
+    `;
+  }
+
+  try {
+    const res = await fetch(`/api/notices/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if(!res.ok){
+      throw new Error(data.error || "Failed to update notice.");
+    }
+
+    toast("Notice updated successfully!");
+    await loadNotices();
+    navigate("manage");
+
+  } catch(err){
+    console.error(err);
+    toast(err.message || "Unable to save notice changes.");
+    if(saveBtn){
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = `
+        <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:4px;">
+          save
+        </span>
+        Save Changes
+      `;
+    }
+  }
+}
+
+
+/* =========================================================
+   DOCUMENT UPLOAD (AMAZON S3) HANDLER
+   ========================================================= */
+
+async function handleNoticeFileSelect(fileInput, targetUrlInputId){
+  const file = fileInput.files && fileInput.files[0];
+  if(!file) return;
+
+  const statusElem = fileInput.id === "editNoticeFileInput"
+    ? document.getElementById("editNoticeFileStatus")
+    : document.getElementById("noticeFileStatus");
+
+  if(statusElem){
+    statusElem.innerHTML = `<span class="material-symbols-outlined" style="animation:spin 1s linear infinite;font-size:16px;vertical-align:middle;">sync</span> Uploading ${escapeHtml(file.name)}...`;
+  }
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  try {
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: formData
+    });
+    const data = await res.json();
+    if(!res.ok){
+      throw new Error(data.error || "Failed to upload file");
+    }
+
+    const targetInput = document.getElementById(targetUrlInputId);
+    if(targetInput){
+      targetInput.value = data.url;
+    }
+
+    const storageLabel = data.storage === "s3" ? "Amazon S3" : "Storage";
+    if(statusElem){
+      statusElem.innerHTML = `✅ <span style="color:#10b981;font-weight:600;">Uploaded to ${storageLabel}:</span> ${escapeHtml(file.name)}`;
+    }
+    toast(`Document uploaded to ${storageLabel}!`);
+  } catch(err){
+    console.error(err);
+    if(statusElem){
+      statusElem.innerHTML = `❌ <span style="color:#ef4444;">Upload failed</span>`;
+    }
+    toast("Upload failed: " + (err.message || "Unknown error"));
+  }
+}
+
+
+function filterManageNotices(){
+
+  const q =
+    (
+      document.getElementById("manageSearch")?.value || ""
+    ).toLowerCase();
+
+
+  const c =
+    document.getElementById("manageCategory")?.value || "";
+
+
+  const list =
+    notices.filter(n =>
+
+      (
+        !q ||
+        `${n.title} ${n.description || n.desc} ${n.department}`
+          .toLowerCase()
+          .includes(q)
+      )
+
+      &&
+
+      (!c || n.category === c)
+
+    );
+
+
+  document.getElementById("manageResults").innerHTML =
+    manageRows(list);
+
+}
+
+
+/* =========================================================
+   CREATE NOTICE PAGE
+   ========================================================= */
+
+function createPage(){
+
+  return `
+
+    <div class="page">
+
+      <div class="page-head">
+
+        <div>
+
+          <div class="eyebrow">
+            Administration
+          </div>
+
+          <h1>
+            Create New Notice
+          </h1>
+
+          <div class="subtitle">
+            Publish an announcement for students.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="grid grid-2">
+
+
+        <section
+          class="card"
+          style="padding:22px"
+        >
+
+          <form
+            id="createNoticeForm"
+            onsubmit="publishNotice(event)"
+          >
+
+            <div class="form-grid">
+
+
+              <div class="form-field full">
+
+                <label>
+                  Title
+                </label>
+
+                <input
+                  id="noticeTitle"
+                  class="form-control"
+                  placeholder="e.g. AWS Cloud Workshop"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-field full">
+
+                <label>
+                  Description
+                </label>
+
+                <textarea
+                  id="noticeDescription"
+                  class="form-control"
+                  placeholder="Describe the announcement..."
+                  required
+                ></textarea>
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label>
+                  Category
+                </label>
+
+                <select
+                  id="noticeCategory"
+                  class="form-control"
+                >
+
+                  <option>
+                    Academic
+                  </option>
+
+                  <option>
+                    Placement
+                  </option>
+
+                  <option>
+                    Event
+                  </option>
+
+                  <option>
+                    Workshop
+                  </option>
+
+                  <option>
+                    Scholarship
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label>
+                  Department
+                </label>
+
+                <select
+                  id="noticeDepartment"
+                  class="form-control"
+                >
+
+                  <option>
+                    Artificial Intelligence
+                  </option>
+
+                  <option>
+                    Computer
+                  </option>
+
+                  <option>
+                    Electronics and Telecommunication
+                  </option>
+
+                  <option>
+                    Mechanical
+                  </option>
+
+                  <option>
+                    All Departments
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label>
+                  Target Year
+                </label>
+
+                <select
+                  id="noticeYear"
+                  class="form-control"
+                >
+
+                  <option>
+                    All Years
+                  </option>
+
+                  <option>
+                    1st Year
+                  </option>
+
+                  <option>
+                    2nd Year
+                  </option>
+
+                  <option>
+                    3rd Year
+                  </option>
+
+                  <option>
+                    4th Year
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label>
+                  Priority
+                </label>
+
+                <select
+                  id="noticePriority"
+                  class="form-control"
+                >
+
+                  <option>
+                    Normal
+                  </option>
+
+                  <option>
+                    Important
+                  </option>
+
+                  <option>
+                    Urgent
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label>
+                  Event Date
+                </label>
+
+                <input
+                  id="noticeEventDate"
+                  class="form-control"
+                  type="date"
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label>
+                  Registration Deadline
+                </label>
+
+                <input
+                  id="noticeDeadline"
+                  class="form-control"
+                  type="date"
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label>
+                  Venue
+                </label>
+
+                <input
+                  id="noticeVenue"
+                  class="form-control"
+                  placeholder="Seminar Hall"
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label>
+                  Registration URL
+                </label>
+
+                <input
+                  id="noticeRegistrationUrl"
+                  class="form-control"
+                  placeholder="https://..."
+                  type="url"
+                >
+
+              </div>
+
+
+              <div class="form-field full">
+
+                <label>
+                  Official notice document (Optional)
+                </label>
+
+                <div class="upload" style="border:2px dashed #cbd5e1;border-radius:12px;padding:20px;text-align:center;background:#f8fafc;">
+
+                  <span
+                    class="material-symbols-outlined"
+                    style="font-size:36px;color:var(--primary);"
+                  >
+                    cloud_upload
+                  </span>
+
+                  <div style="margin-top:8px;font-size:14px;font-weight:600;color:#0f172a;">
+                    Upload Document to Amazon S3
+                  </div>
+
+                  <div style="font-size:12px;color:#64748b;margin:4px 0 12px;">
+                    Supports PDF, DOC, DOCX, PPT, PPTX, PNG, JPG (Stored securely in Amazon S3 with local fallback)
+                  </div>
+
+                  <div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;">
+                    <input
+                      type="file"
+                      id="noticeFileInput"
+                      accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg,.txt"
+                      style="display:none;"
+                      onchange="handleNoticeFileSelect(this, 'noticeDocUrl')"
+                    >
+                    <button
+                      type="button"
+                      class="btn"
+                      onclick="document.getElementById('noticeFileInput').click()"
+                      style="background:#ffffff;"
+                    >
+                      <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:4px;">
+                        folder_open
+                      </span>
+                      Choose File
+                    </button>
+                    <span id="noticeFileStatus" style="font-size:13px;color:#475569;font-weight:500;">
+                      No file chosen
+                    </span>
+                  </div>
+
+                </div>
+
+                <div style="margin-top:10px;">
+                  <label style="font-size:12px;color:#64748b;">Or enter Document URL directly:</label>
+                  <input
+                    id="noticeDocUrl"
+                    class="form-control"
+                    placeholder="https://... (or auto-filled when document is uploaded)"
+                    style="font-size:13px;"
+                  >
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+            <div
+              style="
+                display:flex;
+                gap:8px;
+                justify-content:flex-end;
+                margin-top:18px
+              "
+            >
+
+              <button
+                type="button"
+                class="btn"
+                onclick="toast('Draft saving will be added later.')"
+              >
+                Save Draft
+              </button>
+
+
+              <button
+                type="submit"
+                class="btn primary"
+                id="publishButton"
+              >
+
+                <span class="material-symbols-outlined">
+                  publish
+                </span>
+
+                Publish Notice
+
+              </button>
+
+            </div>
+
+          </form>
+
+        </section>
+
+
+        <aside
+          class="card"
+          style="padding:22px"
+        >
+
+          <h2 style="font-size:18px">
+            Live Preview
+          </h2>
+
+          <p
+            class="muted"
+            style="margin:6px 0 16px"
+          >
+            Students will see the notice in this format.
+          </p>
+
+
+          <div class="preview">
+
+            <span class="badge workshop">
+              Workshop
+            </span>
+
+            <h3 style="margin-top:12px">
+              Your new notice
+            </h3>
+
+            <p
+              class="muted"
+              style="line-height:1.6"
+            >
+              Fill in the form to publish a real
+              database-backed campus notice.
+            </p>
+
+            <div class="meta">
+
+              <span>
+                🏫 Department
+              </span>
+
+              <span>
+                📅 Event date
+              </span>
+
+            </div>
+
+            <div class="deadline">
+              ⏰ Registration deadline
+            </div>
+
+          </div>
+
+        </aside>
+
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   PUBLISH NOTICE TO FLASK
+   ========================================================= */
+
+async function publishNotice(event){
+
+  event.preventDefault();
+
+
+  const button =
+    document.getElementById("publishButton");
+
+
+  const notice = {
+
+    title:
+      document.getElementById("noticeTitle").value.trim(),
+
+    description:
+      document.getElementById("noticeDescription").value.trim(),
+
+    category:
+      document.getElementById("noticeCategory").value,
+
+    department:
+      document.getElementById("noticeDepartment").value,
+
+    year:
+      document.getElementById("noticeYear").value,
+
+    priority:
+      document.getElementById("noticePriority").value,
+
+    event_date:
+      document.getElementById("noticeEventDate").value || null,
+
+    deadline:
+      document.getElementById("noticeDeadline").value || null,
+
+    venue:
+      document.getElementById("noticeVenue").value.trim() || null,
+
+    registration_url:
+      document.getElementById("noticeRegistrationUrl").value.trim() || null,
+
+    document_url:
+      document.getElementById("noticeDocUrl")?.value.trim() || null
+
+  };
+
+
+  if(!notice.title || !notice.description){
+
+    toast("Title and description are required.");
+
+    return;
+
+  }
+
+
+  try{
+
+    button.disabled = true;
+
+    button.innerHTML = `
+
+      <span class="material-symbols-outlined">
+        hourglass_top
+      </span>
+
+      Publishing...
+
+    `;
+
+
+    const response =
+      await fetch(API_URL, {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify(notice)
+
+      });
+
+
+    const result =
+      await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        result.error ||
+        "Failed to create notice"
+      );
+
+    }
+
+
+    toast(
+      "Notice published successfully!"
+    );
+
+
+    /*
+       Reload notices from the database.
+       This is important because it proves
+       the frontend is now reading the real
+       backend data.
+    */
+
+    await loadNotices();
+
+
+    /*
+       Go to the student notices page
+       so we can immediately see the
+       newly published notice.
+    */
+
+    navigate("notices");
+
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      error.message ||
+      "Unable to publish notice."
+    );
+
+
+    button.disabled = false;
+
+    button.innerHTML = `
+
+      <span class="material-symbols-outlined">
+        publish
+      </span>
+
+      Publish Notice
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   SEARCH FROM HOME
+   ========================================================= */
+
+function renderNotices(q){
+
+  location.hash = "notices";
+
+  render();
+
+
+  setTimeout(() => {
+
+    if(q){
+
+      const search =
+        document.getElementById("noticeSearch");
+
+      if(search){
+
+        search.value = q;
+
+        filterNotices();
+
+      }
+
+    }
+
+  },0);
+
+}
+
+
+/* =========================================================
+   MAIN RENDERER
+   ========================================================= */
+
+function renderApp(){
+
+  let r = current();
+
+  let route = r.split("-")[0];
+
+  let content;
+
+
+  if(route === "detail"){
+
+    content =
+      detailPage(r.split("-")[1]);
+
+  }
+
+  else if(route === "home"){
+
+    content = home();
+
+  }
+
+  else if(route === "notices"){
+
+    content = noticesPage();
+
+  }
+
+  else if(route === "events"){
+
+    content = eventsPage();
+
+  }
+
+  else if(route === "saved"){
+
+    content = savedPage();
+
+  }
+
+  else if(route === "ask"){
+
+    content = askPage();
+
+  }
+
+  else if(route === "admin"){
+
+    content = adminPage();
+
+  }
+
+  else if(route === "faculty"){
+
+    content = facultyPage();
+
+  }
+
+  else if(route === "profile"){
+
+    content = campusProfilePage();
+
+  }
+
+  else if(route === "manage"){
+
+    content = managePage();
+
+  }
+
+  else if(route === "create"){
+
+    content = createPage();
+
+  }
+
+  else if(route === "edit"){
+
+    content = editPage(r.split("-")[1]);
+
+  }
+
+  else{
+
+    content = home();
+
+  }
+
+
+  document.getElementById("app").innerHTML =
+    content;
+
+
+  document.getElementById("crumb").textContent =
+    routeNames[route] || "CampusAI";
+
+
+  document
+    .querySelectorAll("[data-route]")
+    .forEach(b =>
+      b.classList.toggle(
+        "active",
+        b.dataset.route === route
+      )
+    );
+
+
+  document
+    .querySelectorAll("[data-route]")
+    .forEach(b =>
+      b.onclick = () =>
+        navigate(b.dataset.route)
+    );
+
+}
+
+
+
+/* =========================================================
+   CAMPUSAI AUTHENTICATION
+   CAMPUSAI_AUTH_V1
+   ========================================================= */
+
+const DEMO_USERS = {
+  student:{
+    role:"student",
+    label:"Student",
+    name:"Alex Student",
+    identifier:"student@campusai.local",
+    password:"Student@123"
+  },
+
+  faculty:{
+    role:"faculty",
+    label:"Faculty",
+    name:"Dr. Faculty",
+    identifier:"faculty@campusai.local",
+    password:"Faculty@123"
+  },
+
+  admin:{
+    role:"admin",
+    label:"Administrator",
+    name:"Campus Administrator",
+    identifier:"admin@campusai.local",
+    password:"Admin@123"
+  }
+};
+
+const ROLE_HOME = {
+  student:"home",
+  faculty:"faculty",
+  admin:"admin"
+};
+
+function getSession(){
+  try{
+    return JSON.parse(
+      localStorage.getItem("campusai_session") || "null"
+    );
+  }catch(error){
+    return null;
+  }
+}
+
+function setSession(user){
+  if(!user){
+    clearSession();
+    return;
+  }
+  const sessionData = {
+    ...user,
+    role: user.role,
+    label: user.label || (user.role === "student" ? "Student" : user.role === "faculty" ? "Faculty" : "Administrator"),
+    name: user.name || (user.firstName ? `${user.firstName} ${user.lastName || ""}`.trim() : user.identifier),
+    identifier: user.identifier || user.email,
+    email: user.email || (user.identifier && user.identifier.includes("@") ? user.identifier : ""),
+    profileComplete: typeof user.profileComplete === "boolean" ? user.profileComplete : true,
+    loginAt: user.loginAt || new Date().toISOString()
+  };
+  localStorage.setItem(
+    "campusai_session",
+    JSON.stringify(sessionData)
+  );
+}
+
+function clearSession(){
+  localStorage.removeItem("campusai_session");
+}
+
+function showWelcome(){
+
+  const auth = document.getElementById("authView");
+  const shell = document.getElementById("campusShell");
+
+  if(shell){
+    shell.style.display = "none";
+  }
+
+  auth.innerHTML = `
+    <div class="auth-page">
+
+      <div class="auth-container">
+
+        <section class="auth-brand">
+
+          <span class="material-symbols-outlined">
+            school
+          </span>
+
+          <h1>CampusAI</h1>
+
+          <p>
+            Your intelligent campus companion for notices,
+            events, opportunities, academic information,
+            and campus updates.
+          </p>
+
+          <p>
+            Sign in to continue to your personalized campus experience.
+          </p>
+
+        </section>
+
+        <section class="auth-card">
+
+          <h2>Welcome to CampusAI</h2>
+
+          <div class="auth-subtitle">
+            Choose how you want to access CampusAI.
+          </div>
+
+          <div class="role-grid">
+
+            <button
+              class="role-option"
+              onclick="showLogin('student')"
+            >
+              <span class="material-symbols-outlined">
+                person
+              </span>
+
+              <strong>Student</strong>
+
+              <span>
+                View notices & events
+              </span>
+            </button>
+
+            <button
+              class="role-option"
+              onclick="showLogin('faculty')"
+            >
+              <span class="material-symbols-outlined">
+                badge
+              </span>
+
+              <strong>Faculty</strong>
+
+              <span>
+                Manage announcements
+              </span>
+            </button>
+
+            <button
+              class="role-option"
+              onclick="showLogin('admin')"
+            >
+              <span class="material-symbols-outlined">
+                admin_panel_settings
+              </span>
+
+              <strong>Admin</strong>
+
+              <span>
+                Manage CampusAI
+              </span>
+            </button>
+
+          </div>
+
+          <div style="margin-top:24px;text-align:center">
+            <div style="font-size:13px;color:#64748b;margin-bottom:10px">
+              New to CampusAI?
+            </div>
+
+            <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+              <button
+                type="button"
+                class="auth-link-button"
+                onclick="navigate('signup-student')"
+              >
+                Student Sign Up
+              </button>
+
+              <button
+                type="button"
+                class="auth-link-button"
+                onclick="navigate('signup-faculty')"
+              >
+                Faculty Sign Up
+              </button>
+
+              <button
+                type="button"
+                class="auth-link-button"
+                onclick="navigate('signup-admin')"
+              >
+                Admin Sign Up
+              </button>
+            </div>
+          </div>
+
+          <div class="auth-note">
+            Local development authentication is being used for now.
+            Production authentication will be connected to Amazon Cognito.
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+  `;
+}
+
+function showLogin(role){
+
+  const user = DEMO_USERS[role];
+
+  const auth = document.getElementById("authView");
+
+  auth.innerHTML = `
+    <div class="auth-page">
+
+      <div class="auth-container">
+
+        <section class="auth-brand">
+
+          <span class="material-symbols-outlined">
+            ${role === "student"
+              ? "person"
+              : role === "faculty"
+              ? "badge"
+              : "admin_panel_settings"}
+          </span>
+
+          <h1>${user.label} Login</h1>
+
+          <p>
+            Sign in to access your CampusAI account.
+          </p>
+
+        </section>
+
+        <section class="auth-card">
+
+          <button
+            class="auth-back"
+            onclick="showWelcome()"
+          >
+            ← Back to role selection
+          </button>
+
+          <h2>${user.label} Login</h2>
+
+          <div class="auth-subtitle">
+            Enter your credentials to continue.
+          </div>
+
+          <form
+            class="auth-form"
+            onsubmit="handleLogin(event,'${role}')"
+          >
+
+            <label>
+              Email / Username
+            </label>
+
+            <input
+              id="loginIdentifier"
+              type="text"
+              placeholder="Enter your email"
+              autocomplete="username"
+              required
+            >
+
+            <label>
+              Password
+            </label>
+
+            <div class="auth-password-wrap">
+              <input
+                id="loginPassword"
+                type="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                type="button"
+                class="auth-password-toggle"
+                onclick="toggleCampusPassword('loginPassword', this)"
+                aria-label="Show password"
+                title="Show password"
+              >👁</button>
+            </div>
+
+            <div
+              id="authError"
+              class="auth-error"
+            ></div>
+
+            <button
+              class="auth-submit"
+              type="submit"
+            >
+              Sign In
+            </button>
+
+          </form>
+
+          <div style="margin-top:20px;text-align:center;font-size:13px;color:#64748b">
+            Don't have an account?
+            <button
+              type="button"
+              class="auth-link-button"
+              onclick="navigate('signup-${role}')"
+            >
+              Sign Up
+            </button>
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+  `;
+}
+
+function handleLogin(event, role){
+
+  event.preventDefault();
+
+  const identifierInput = document.getElementById("loginIdentifier");
+  const passwordInput = document.getElementById("loginPassword");
+  const error = document.getElementById("authError");
+
+  const identifier = (identifierInput ? identifierInput.value : "").trim().toLowerCase();
+  const password = passwordInput ? passwordInput.value : "";
+
+  // Validate required fields
+  if(!identifier || !password || !password.trim()){
+    if(error){
+      error.textContent = "Please enter your email/username and password.";
+      error.style.display = "block";
+    }
+    return;
+  }
+
+  // Load registered users from campusai_users
+  const registeredUsers = typeof getCampusUsers === "function" ? getCampusUsers() : [];
+
+  // Find user matching role and email or identifier (case-insensitive & trimmed)
+  const registeredUser = registeredUsers.find(u =>
+    String(u.role || "").toLowerCase() === role.toLowerCase() &&
+    (
+      String(u.email || "").trim().toLowerCase() === identifier ||
+      String(u.identifier || "").trim().toLowerCase() === identifier ||
+      String(u.name || "").trim().toLowerCase() === identifier
+    )
+  );
+
+  // Check demo fallback only if no registered user matched identifier
+  const demoUser = DEMO_USERS[role];
+  const isDemo = !registeredUser && demoUser && (
+    String(demoUser.identifier || "").trim().toLowerCase() === identifier ||
+    String(demoUser.email || "").trim().toLowerCase() === identifier
+  );
+
+  const user = registeredUser || (isDemo ? demoUser : null);
+
+  // Verify password (supports exact match and trimmed match)
+  const passwordMatches = user && (
+    password === user.password ||
+    password.trim() === String(user.password || "").trim()
+  );
+
+  if(!user || !passwordMatches){
+    if(error){
+      error.textContent = "Invalid email/username or password.";
+      error.style.display = "block";
+    }
+    return;
+  }
+
+  // Clear any active error message
+  if(error){
+    error.textContent = "";
+    error.style.display = "none";
+  }
+
+  // Login successful: create session, preserve actual name, email, identifier, role
+  setSession(user);
+
+  /*
+     New users complete their profile before
+     entering the main CampusAI experience.
+  */
+  if(user.profileComplete === false){
+    location.hash = "profile";
+  } else {
+    location.hash = ROLE_HOME[role] || "home";
+  }
+
+  render();
+
+  if(typeof toast === "function"){
+    toast(`Welcome, ${user.name || user.firstName || "User"}!`);
+  }
+}
+
+
+function logout(){
+
+  clearSession();
+
+  location.hash = "welcome";
+
+  render();
+
+  if(typeof toast === "function"){
+
+    toast("You have been logged out.");
+
+  }
+}
+
+
+function roleCanAccess(route, role){
+
+  const studentRoutes = [
+    "home",
+    "notices",
+    "events",
+    "saved",
+    "ask",
+    "detail"
+  ];
+
+  const facultyRoutes = [
+    "faculty",
+    "home",
+    "notices",
+    "events",
+    "saved",
+    "ask",
+    "manage",
+    "create",
+    "edit",
+    "detail"
+  ];
+
+  const adminRoutes = [
+    "admin",
+    "home",
+    "notices",
+    "events",
+    "saved",
+    "ask",
+    "manage",
+    "create",
+    "edit",
+    "detail"
+  ];
+
+  if(route === "profile"){
+    return (
+      role === "student" ||
+      role === "faculty" ||
+      role === "admin"
+    );
+  }
+
+  if(role === "student"){
+    return studentRoutes.includes(route);
+  }
+
+  if(role === "faculty"){
+    return facultyRoutes.includes(route);
+  }
+
+  if(role === "admin"){
+    return adminRoutes.includes(route);
+  }
+
+  return false;
+}
+
+function facultyPage(){
+
+  const session = getSession();
+
+  return `
+    <div class="page faculty-dashboard">
+
+      <div class="page-head">
+
+        <div>
+
+          <div class="eyebrow">
+            Faculty
+          </div>
+
+          <h1>
+            Faculty Dashboard
+          </h1>
+
+          <div class="subtitle">
+            Welcome, ${session?.name || "Faculty"}.
+            Manage campus announcements and notices.
+          </div>
+
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button
+            class="btn"
+            onclick="navigate('profile')"
+          >
+            <span class="material-symbols-outlined">
+              account_circle
+            </span>
+            My Profile
+          </button>
+
+          <button
+            class="btn primary"
+            onclick="navigate('create')"
+          >
+            <span class="material-symbols-outlined">
+              add
+            </span>
+            Create Notice
+          </button>
+        </div>
+
+      </div>
+
+      <div class="grid grid-3">
+
+        <div class="card stat">
+
+          <div class="stat-top">
+            <span>
+              Published Notices
+            </span>
+
+            <span class="stat-accent">
+              ●
+            </span>
+          </div>
+
+          <div class="stat-num">
+            ${notices.length}
+          </div>
+
+        </div>
+
+        <div class="card stat">
+
+          <div class="stat-top">
+            <span>
+              Upcoming Events
+            </span>
+
+            <span class="stat-accent">
+              ●
+            </span>
+          </div>
+
+          <div class="stat-num">
+            ${
+              notices.filter(
+                n =>
+                  n.category === "Event" ||
+                  n.category === "Workshop"
+              ).length
+            }
+          </div>
+
+        </div>
+
+        <div class="card stat">
+
+          <div class="stat-top">
+            <span>
+              Manage
+            </span>
+
+            <span class="stat-accent">
+              ●
+            </span>
+          </div>
+
+          <div class="stat-num">
+            <button
+              class="btn"
+              onclick="navigate('manage')"
+            >
+              Manage Notices
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="section">
+
+        <div class="card" style="padding:22px">
+
+          <h2>
+            Faculty Actions
+          </h2>
+
+          <p class="muted">
+            Create new campus announcements or manage
+            existing notices.
+          </p>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+
+            <button
+              class="btn primary"
+              onclick="navigate('create')"
+            >
+              Create Notice
+            </button>
+
+            <button
+              class="btn"
+              onclick="navigate('manage')"
+            >
+              Manage Notices
+            </button>
+
+            <button
+              class="btn"
+              onclick="navigate('notices')"
+            >
+              View Student Notices
+            </button>
+
+            <button
+              class="btn"
+              onclick="navigate('profile')"
+            >
+              Edit My Profile
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+}
+
+/* ---------------------------------------------------------
+   Protected renderer
+   --------------------------------------------------------- */
+
+function render(){
+
+  const session = getSession();
+
+  let r = current();
+
+  let route = r.split("-")[0];
+
+  /*
+     Nobody logged in:
+     always show Welcome Page.
+  */
+
+  if(!session){
+
+    /*
+       Allow Student / Faculty / Admin Sign-Up pages
+       before a user is logged in.
+    */
+
+    if(route === "signup"){
+
+      const signupRole = r.replace("signup-", "");
+
+      if(
+        signupRole === "student" ||
+        signupRole === "faculty" ||
+        signupRole === "admin"
+      ){
+        const auth = document.getElementById("authView");
+
+        if(auth){
+          auth.style.display = "block";
+          auth.innerHTML = signupPage(signupRole);
+        }
+
+        const shell = document.getElementById("campusShell");
+
+        if(shell){
+          shell.style.display = "none";
+        }
+
+        return;
+      }
+    }
+
+    /*
+       login-student, login-faculty and login-admin
+       must open their login pages.
+    */
+
+    if(route === "login"){
+
+      const loginRole = r.replace("login-", "");
+
+      if(
+        loginRole === "student" ||
+        loginRole === "faculty" ||
+        loginRole === "admin"
+      ){
+        showLogin(loginRole);
+        return;
+      }
+    }
+
+    if(
+      route === "welcome" ||
+      route === "login" ||
+      !r ||
+      r === "home"
+    ){
+      showWelcome();
+      return;
+    }
+
+    location.hash = "welcome";
+
+    showWelcome();
+
+    return;
+  }
+
+  /*
+     Already logged in:
+     prevent returning to login/welcome.
+  */
+
+  if(
+    route === "welcome" ||
+    route === "login"
+  ){
+
+    location.hash = ROLE_HOME[session.role];
+
+    route = ROLE_HOME[session.role];
+
+    r = route;
+  }
+
+  /*
+     Check role permissions.
+  */
+
+  if(!roleCanAccess(route, session.role)){
+
+    if(typeof toast === "function"){
+      toast("You do not have permission to open that page.");
+    }
+
+    location.hash = ROLE_HOME[session.role];
+
+    route = ROLE_HOME[session.role];
+
+    r = route;
+  }
+
+  const auth =
+    document.getElementById("authView");
+
+  const shell =
+    document.getElementById("campusShell");
+
+  if(auth){
+    auth.innerHTML = "";
+    auth.style.display = "none";
+  }
+
+  if(shell){
+    shell.style.display = "flex";
+  }
+
+  /*
+     Render view and sync role interface
+  */
+  renderApp();
+
+  updateAuthInterface();
+}
+
+function updateAuthInterface(){
+
+  const session = getSession();
+
+  if(!session){
+    return;
+  }
+
+  /*
+     Hide/show navigation according to role.
+  */
+
+  const mgmtSection = document.getElementById("managementNavSection");
+  if(mgmtSection){
+    mgmtSection.style.display = session.role === "student" ? "none" : "";
+  }
+
+  document.querySelectorAll('[data-route="faculty"]')
+    .forEach(el => {
+      el.style.display =
+        (session.role === "faculty" || session.role === "admin")
+          ? ""
+          : "none";
+    });
+
+  document.querySelectorAll('[data-route="admin"]')
+    .forEach(el => {
+      el.style.display =
+        session.role === "admin"
+          ? ""
+          : "none";
+    });
+
+  document.querySelectorAll('[data-route="manage"]')
+    .forEach(el => {
+      el.style.display =
+        session.role === "student"
+          ? "none"
+          : "";
+    });
+
+  document.querySelectorAll('[data-route="create"]')
+    .forEach(el => {
+      el.style.display =
+        session.role === "student"
+          ? "none"
+          : "";
+    });
+
+  /*
+     Add logout button if the existing topbar
+     does not already contain one.
+  */
+
+  let logoutButton =
+    document.getElementById("campusaiLogoutButton");
+
+  if(!logoutButton){
+
+    const possibleContainer =
+      document.querySelector("header");
+
+    if(possibleContainer){
+
+      logoutButton =
+        document.createElement("button");
+
+      logoutButton.id =
+        "campusaiLogoutButton";
+
+      logoutButton.className =
+        "btn";
+
+      logoutButton.innerHTML = `
+        <span class="material-symbols-outlined">
+          logout
+        </span>
+        Logout
+      `;
+
+      logoutButton.onclick = logout;
+
+      possibleContainer.appendChild(
+        logoutButton
+      );
+    }
+  }
+
+  /*
+     Update dynamic avatar with user initials
+  */
+  const avatarElement = document.getElementById("topUserAvatar");
+  if(avatarElement){
+    const nameParts = (session.name || session.label || "Student")
+      .trim()
+      .split(/\s+/);
+
+    const initials = nameParts
+      .slice(0, 2)
+      .map(part => part.charAt(0))
+      .join("")
+      .toUpperCase();
+
+    avatarElement.textContent = initials || "CA";
+    avatarElement.title = `${session.name || "User"} (${session.label || session.role}) — Click to view profile`;
+    avatarElement.style.cursor = "pointer";
+    avatarElement.onclick = () => navigate("profile");
+  }
+
+  /*
+     Update existing avatar/name elements when present.
+  */
+
+  const nameElements = [
+    document.getElementById("topUserName"),
+    document.getElementById("userName"),
+    document.getElementById("profileName")
+  ];
+
+  nameElements.forEach(el => {
+    if(el){
+      el.textContent = session.name;
+    }
+  });
+}
+/* =========================================================
+   END CAMPUSAI_AUTH_V1
+   =========================================================
+*/
+
+
+/* =========================================================
+   START APPLICATION
+   ========================================================= */
+
+window.addEventListener(
+  "hashchange",
+  render
+);
+
+
+/*
+   First render the interface,
+   then load real notices from Flask.
+*/
+
+
+
+</script>
+
+
+<script>
+/* =========================================================
+   CAMPUSAI_SIGNUP_V1
+   PASSWORD VISIBILITY HELPER
+   ========================================================= */
+
+function toggleCampusPassword(inputId, button) {
+    const input = document.getElementById(inputId);
+
+    if (!input) return;
+
+    if (input.type === "password") {
+        input.type = "text";
+        button.textContent = "🙈";
+        button.setAttribute("aria-label", "Hide password");
+        button.setAttribute("title", "Hide password");
+    } else {
+        input.type = "password";
+        button.textContent = "👁";
+        button.setAttribute("aria-label", "Show password");
+        button.setAttribute("title", "Show password");
+    }
+}
+
+function campusPasswordField(
+    inputId,
+    name,
+    label,
+    placeholder,
+    required = true
+) {
+    return `
+        <div class="auth-field">
+            <label for="${inputId}">${label}</label>
+
+            <div class="auth-password-wrap">
+                <input
+                    id="${inputId}"
+                    name="${name}"
+                    type="password"
+                    placeholder="${placeholder}"
+                    ${required ? "required" : ""}
+                    autocomplete="new-password"
+                >
+
+                <button
+                    type="button"
+                    class="auth-password-toggle"
+                    onclick="toggleCampusPassword('${inputId}', this)"
+                    aria-label="Show password"
+                    title="Show password"
+                >👁</button>
+            </div>
+        </div>
+    `;
+}
+
+/* END CAMPUSAI_SIGNUP_V1 */
+</script>
+
+
+<script>
+/* =========================================================
+   CAMPUSAI_SIGNUP_V1
+   SIGN-UP PAGES
+   ========================================================= */
+
+function getCampusUsers() {
+    try {
+        return JSON.parse(
+            localStorage.getItem("campusai_users") || "[]"
+        );
+    } catch (error) {
+        return [];
+    }
+}
+
+function saveCampusUsers(users) {
+    localStorage.setItem(
+        "campusai_users",
+        JSON.stringify(users)
+    );
+}
+
+function signupPage(role) {
+
+    const roleInfo = {
+        student: {
+            title: "Create Student Account",
+            subtitle: "Join CampusAI as a student",
+            button: "Create Student Account",
+            loginRoute: "login-student",
+            note: "Use your student information to create your CampusAI account."
+        },
+
+        faculty: {
+            title: "Create Faculty Account",
+            subtitle: "Join CampusAI as a faculty member",
+            button: "Create Faculty Account",
+            loginRoute: "login-faculty",
+            note: "Use your faculty information to create your CampusAI account."
+        },
+
+        admin: {
+            title: "Create Administrator Account",
+            subtitle: "Create an administrator account",
+            button: "Create Administrator Account",
+            loginRoute: "login-admin",
+            note: "Prototype only: production administrator accounts should be created by authorized system administrators."
+        }
+    };
+
+    const info = roleInfo[role];
+
+    if (!info) {
+        return `
+            <div class="auth-page">
+                <div class="auth-card">
+                    <h2>Invalid account type</h2>
+                    <button onclick="navigate('welcome')">
+                        Back to Welcome
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    return `
+        <div class="auth-page">
+
+            <div class="auth-card">
+
+                <div class="auth-logo">
+                    <div class="auth-logo-mark">C</div>
+                    <div>
+                        <strong>CampusAI</strong>
+                        <span>Campus Intelligence Platform</span>
+                    </div>
+                </div>
+
+                <h1>${info.title}</h1>
+
+                <p class="auth-subtitle">
+                    ${info.subtitle}
+                </p>
+
+                <div class="signup-role-note">
+                    ${info.note}
+                </div>
+
+                <form
+                    class="auth-form"
+                    onsubmit="handleCampusSignup(event, '${role}')"
+                >
+
+                    <div class="signup-extra">
+
+                        <div class="auth-field">
+                            <label for="signupFirstName">
+                                First Name
+                            </label>
+
+                            <input
+                                id="signupFirstName"
+                                name="firstName"
+                                type="text"
+                                placeholder="Enter first name"
+                                required
+                            >
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="signupLastName">
+                                Last Name
+                            </label>
+
+                            <input
+                                id="signupLastName"
+                                name="lastName"
+                                type="text"
+                                placeholder="Enter last name"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="signupEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            id="signupEmail"
+                            name="email"
+                            type="email"
+                            placeholder="Enter your email address"
+                            required
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="signupIdentifier">
+                            ${role === "student" ? "Student ID" :
+                              role === "faculty" ? "Employee ID" :
+                              "Administrator ID"}
+                        </label>
+
+                        <input
+                            id="signupIdentifier"
+                            name="identifier"
+                            type="text"
+                            placeholder="Enter your ID"
+                            required
+                        >
+                    </div>
+
+                    ${campusPasswordField(
+                        "signupPassword",
+                        "password",
+                        "Password",
+                        "Create a password"
+                    )}
+
+                    ${campusPasswordField(
+                        "signupConfirmPassword",
+                        "confirmPassword",
+                        "Confirm Password",
+                        "Re-enter your password"
+                    )}
+
+                    <button
+                        type="submit"
+                        class="auth-primary-button"
+                    >
+                        ${info.button}
+                    </button>
+
+                </form>
+
+                <div class="auth-footer">
+
+                    <span>Already have an account?</span>
+
+                    <button
+                        class="auth-link-button"
+                        onclick="navigate('${info.loginRoute}')"
+                    >
+                        Sign In
+                    </button>
+
+                </div>
+
+                <button
+                    class="auth-link-button"
+                    onclick="navigate('welcome')"
+                    style="margin-top:12px;"
+                >
+                    ← Back to Welcome
+                </button>
+
+            </div>
+
+        </div>
+    `;
+}
+
+function handleCampusSignup(event, role) {
+
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const firstName =
+        String(formData.get("firstName") || "").trim();
+
+    const lastName =
+        String(formData.get("lastName") || "").trim();
+
+    const email =
+        String(formData.get("email") || "").trim().toLowerCase();
+
+    const identifier =
+        String(formData.get("identifier") || "").trim();
+
+    const password =
+        String(formData.get("password") || "");
+
+    const confirmPassword =
+        String(formData.get("confirmPassword") || "");
+
+    if (!firstName || !lastName || !email || !identifier) {
+        alert("Please complete all required fields.");
+        return;
+    }
+
+    if (password.length < 6) {
+        alert("Password must contain at least 6 characters.");
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+    }
+
+    const users = getCampusUsers();
+
+    const existingUser = users.find(
+        user =>
+            user.email === email ||
+            (
+                user.role === role &&
+                user.identifier.toLowerCase() ===
+                identifier.toLowerCase()
+            )
+    );
+
+    if (existingUser) {
+        alert(
+            "An account with this email or ID already exists. Please sign in."
+        );
+
+        navigate(
+            role === "student"
+                ? "login-student"
+                : role === "faculty"
+                    ? "login-faculty"
+                    : "login-admin"
+        );
+
+        return;
+    }
+
+    const user = {
+        id: "user_" + Date.now(),
+        role: role,
+        label:
+            role === "student"
+                ? "Student"
+                : role === "faculty"
+                    ? "Faculty"
+                    : "Administrator",
+
+        name: `${firstName} ${lastName}`,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        identifier: identifier,
+        password: password,
+
+        profileComplete: false,
+
+        createdAt: new Date().toISOString()
+    };
+
+    users.push(user);
+    saveCampusUsers(users);
+
+    alert(
+        "Account created successfully! Please sign in to continue."
+    );
+
+    navigate(
+        role === "student"
+            ? "login-student"
+            : role === "faculty"
+                ? "login-faculty"
+                : "login-admin"
+    );
+}
+
+/* END CAMPUSAI_SIGNUP_V1 */
+</script>
+
+
+<script>
+/* =========================================================
+   CAMPUSAI_SIGNUP_V1
+   AUTH NAVIGATION HELPERS
+   ========================================================= */
+
+function campusSignupButton(role) {
+
+    const label =
+        role === "student"
+            ? "Create Student Account"
+            : role === "faculty"
+                ? "Create Faculty Account"
+                : "Create Administrator Account";
+
+    return `
+        <button
+            type="button"
+            class="auth-link-button"
+            onclick="navigate('signup-${role}')"
+        >
+            ${label}
+        </button>
+    `;
+}
+
+/* END CAMPUSAI_SIGNUP_V1 */
+</script>
+
+
+<script>/* CAMPUSAI_AUTH_SIGNUP_FIX_V1 */</script>
+
+<script>
+/* CAMPUSAI_REGISTERED_LOGIN_FIX_V1 */
+</script>
+
+
+<script>
+/* =========================================================
+   CAMPUSAI_PROFILE_V1
+   PROFILE CREATION + EDITING
+   ========================================================= */
+
+function campusProfilePage(){
+
+  const session = getSession();
+
+  if(!session){
+    return "";
+  }
+
+  const users = getCampusUsers();
+
+  const savedUser = users.find(user =>
+    (session.id && user.id === session.id) ||
+    (session.email && user.email?.toLowerCase() === session.email?.toLowerCase()) ||
+    (session.identifier && user.identifier?.toLowerCase() === session.identifier?.toLowerCase())
+  );
+
+  const user = savedUser ? { ...session, ...savedUser } : session;
+
+  const isStudent = user.role === "student";
+  const isFaculty = user.role === "faculty";
+  const isAdmin = user.role === "admin";
+
+  return `
+    <div class="page">
+
+      <div class="page-head">
+
+        <div>
+          <div class="eyebrow">
+            ${isStudent ? "Student Profile" : isFaculty ? "Faculty Profile" : "Administrator Profile"}
+          </div>
+
+          <h1>
+            ${user.profileComplete ? "My Profile" : "Create Your Profile"}
+          </h1>
+
+          <div class="subtitle">
+            ${user.profileComplete
+              ? "View and update your CampusAI profile information."
+              : "Complete your CampusAI profile so your account can provide a personalized experience."}
+          </div>
+        </div>
+
+        ${
+          user.profileComplete
+          ? `
+            <button
+              class="btn"
+              onclick="navigate(ROLE_HOME['${user.role}'])"
+            >
+              ← Back to Dashboard
+            </button>
+          `
+          : ""
+        }
+
+      </div>
+
+      <div class="card" style="max-width:850px;padding:28px">
+
+        <form
+          class="auth-form"
+          onsubmit="saveCampusProfile(event)"
+        >
+
+          <div class="grid grid-2">
+
+            <div class="auth-field">
+              <label>Full Name</label>
+              <input
+                id="profileName"
+                type="text"
+                value="${user.name || ""}"
+                required
+              >
+            </div>
+
+            <div class="auth-field">
+              <label>Email</label>
+              <input
+                id="profileEmail"
+                type="email"
+                value="${user.email || ""}"
+                readonly
+              >
+            </div>
+
+          </div>
+
+          <div class="grid grid-2">
+
+            <div class="auth-field">
+              <label>
+                ${isStudent ? "Student ID" :
+                  isFaculty ? "Employee ID" :
+                  "Administrator ID"}
+              </label>
+
+              <input
+                id="profileIdentifier"
+                type="text"
+                value="${user.identifier || ""}"
+                readonly
+              >
+            </div>
+
+            <div class="auth-field">
+              <label>Phone Number</label>
+
+              <input
+                id="profilePhone"
+                type="tel"
+                value="${user.phone || ""}"
+                placeholder="Enter phone number"
+              >
+            </div>
+
+          </div>
+
+          <div class="grid grid-2">
+
+            <div class="auth-field">
+              <label>Department</label>
+
+              <input
+                id="profileDepartment"
+                type="text"
+                value="${user.department || ""}"
+                placeholder="${isStudent ? "e.g. Computer Engineering" : isFaculty ? "e.g. Computer Science & Engineering" : "e.g. Campus Administration / Academic Affairs"}"
+                required
+              >
+            </div>
+
+            <div class="auth-field">
+              <label>
+                ${isStudent ? "Year of Study" :
+                  isFaculty ? "Academic Designation" :
+                  "Administrative Role / Title"}
+              </label>
+
+              <input
+                id="profileYear"
+                type="text"
+                value="${user.year || ""}"
+                placeholder="${isStudent ? "e.g. 3rd Year" : isFaculty ? "e.g. Associate Professor / HOD" : "e.g. Senior Administrator / Registrar"}"
+              >
+            </div>
+
+          </div>
+
+          ${
+            !isStudent
+            ? `
+              <div class="auth-field">
+                <label>Office / Cabin Location</label>
+                <input
+                  id="profileOffice"
+                  type="text"
+                  value="${user.office || ""}"
+                  placeholder="e.g. Cabin 204, Faculty Block B"
+                >
+              </div>
+            `
+            : ""
+          }
+
+          ${
+            isStudent
+            ? `
+              <div class="grid grid-2">
+
+                <div class="auth-field">
+                  <label>Semester</label>
+
+                  <input
+                    id="profileSemester"
+                    type="text"
+                    value="${user.semester || ""}"
+                    placeholder="e.g. 6th Semester"
+                  >
+                </div>
+
+                <div class="auth-field">
+                  <label>Section</label>
+
+                  <input
+                    id="profileSection"
+                    type="text"
+                    value="${user.section || ""}"
+                    placeholder="e.g. A"
+                  >
+                </div>
+
+              </div>
+            `
+            : ""
+          }
+
+          <div class="auth-field">
+
+            <label>About You</label>
+
+            <textarea
+              id="profileBio"
+              rows="4"
+              placeholder="Tell us a little about yourself..."
+            >${user.bio || ""}</textarea>
+
+          </div>
+
+          <button
+            type="submit"
+            class="auth-primary-button"
+          >
+            ${user.profileComplete ? "Save Changes" : "Save Profile & Continue"}
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+function saveCampusProfile(event){
+
+  event.preventDefault();
+
+  const session = getSession();
+
+  if(!session){
+    navigate("welcome");
+    return;
+  }
+
+  const users = getCampusUsers();
+
+  const userIndex = users.findIndex(user =>
+    (session.id && user.id === session.id) ||
+    (session.email && user.email?.toLowerCase() === session.email?.toLowerCase()) ||
+    (session.identifier && user.identifier?.toLowerCase() === session.identifier?.toLowerCase())
+  );
+
+  let user;
+  if(userIndex !== -1){
+    user = users[userIndex];
+  } else {
+    user = {
+      id: session.id || "user_" + Date.now(),
+      role: session.role,
+      label: session.label,
+      email: session.email || session.identifier,
+      identifier: session.identifier,
+      password: session.password || "",
+      createdAt: new Date().toISOString()
+    };
+    users.push(user);
+  }
+
+  user.name =
+    document.getElementById("profileName")?.value.trim() || user.name;
+
+  user.phone =
+    document.getElementById("profilePhone")?.value.trim() || "";
+
+  user.department =
+    document.getElementById("profileDepartment")?.value.trim() || "";
+
+  user.year =
+    document.getElementById("profileYear")?.value.trim() || "";
+
+  const office = document.getElementById("profileOffice");
+  if(office){
+    user.office = office.value.trim();
+  }
+
+  const semester =
+    document.getElementById("profileSemester");
+
+  const section =
+    document.getElementById("profileSection");
+
+  user.semester =
+    semester ? semester.value.trim() : (user.semester || "");
+
+  user.section =
+    section ? section.value.trim() : (user.section || "");
+
+  user.bio =
+    document.getElementById("profileBio")?.value.trim() || "";
+
+  user.profileComplete = true;
+
+  saveCampusUsers(users);
+
+  /*
+     Update current login session too.
+  */
+  const updatedSession = {
+    ...session,
+    ...user,
+    profileComplete: true
+  };
+
+  setSession(updatedSession);
+
+  alert("Profile saved successfully!");
+
+  location.hash = ROLE_HOME[updatedSession.role];
+
+  render();
+}
+
+
+/* END CAMPUSAI_PROFILE_V1 */
+</script>
+<script>
+    window.addEventListener("hashchange", render);
+
+    render();
+
+    loadNotices();
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# Local storage
+uploads/
+
+# Logs
+*.log
+
+# Local database
+campusai.db
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
